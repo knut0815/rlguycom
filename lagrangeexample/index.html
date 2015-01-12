@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/basic.css">
+
+    <style>
+    
+    img.indent {
+                    position: relative;
+                    left: 40px;
+                 }
+                 
+    img.indent_large {
+                    position: relative;
+                    left: 140px;
+                 }
+                 
+    </style>
+    
+	<title>Lagrangian Mechanics</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+
+<body>
+  <div class="center_column">
+  
+  <h1>Lagrangian Mechanics Example</h1>
+  
+  <p>This program simulates the motion of a simple pendulum whose base is
+     driven horizontally by x = a sin wt. The simulation is written in C++ and
+     uses the QT application framework.</p>
+     
+  <img src="images/diagram.gif" alt="Pendulum System"><br><br>
+     
+  <h2>Lagrangian System Derivation</h2>
+  
+  <p>Consider a pendulum of mass <i>m</i> and length <i>l</i> whose base is
+     driven horizontally by <i>x = a sin wt</i>. For this system, we will choose 
+     the angle theta as the single generalized coordinate and develop the Lagrangian
+     Equation of Motion:</p>
+  
+  <img class="indent" src="images/lagrangeequation.gif" 
+                      alt="Lagrange Equation of Motion"><br><br>
+  
+  <p>Where <i>L</i> is the Lagrange function and <i>T</i> and <i>U</i> are the
+     the total kinetic energy and total potential energy of the system.</p>
+     
+  <img class="indent" src="images/lagrangefunction.gif" 
+                      alt="Lagrange Function"><br><br>
+  
+  <p>We know the position of the base at any time in the simulation, so</p>
+  
+  <img class="indent" src="images/x0.gif" alt="x0"><br>
+  <img class="indent" src="images/y0.gif" alt="y0"><br><br>
+  
+  <p>Where <i>a</i> is the horizontal amplitude of motion and <i>w</i> is the
+     speed of the motion. We can find the position of the mass with</p>
+  
+  <img class="indent" src="images/x1.gif" alt="x1"><br>
+  <img class="indent" src="images/y1.gif" alt="y1"><br><br>
+  
+  <p>where <i>l</i> is the length of the pendulum and theta is the angle of the
+     pendulum as in the system diagram above. We can differentiate the position
+     of the mass to find its velocity. Theta is a function of time, so remember
+     to make use of the chain rule.</p>
+     
+  <img class="indent" src="images/x1dot.gif" alt="x1 velocity"><br>
+  <img class="indent" src="images/y1dot.gif" alt="y1 velocity"><br><br>
+  
+  <p>Now that we know the velocity of the mass, we can find the total kinetic
+     energy of the system</p>
+     
+  <img class="indent" src="images/T1.gif" alt="kinetic energy"><br>
+  <img class="indent" src="images/T2.gif" alt="kinetic energy"><br><br>
+  
+  <p>where <i>m</i> is the mass of the pendulum. Note that the above expression
+     could have been simplified by using the following trigonometry identity:</p>
+     
+  <img class="indent" src="images/trigidentity.gif" alt="trig identity"><br><br>
+  
+  <p>The total potential energy of the system is then</p>
+  
+  <img class="indent" src="images/U.gif" alt="potential energy"><br><br>
+  
+  <p>And now we have the Lagrange function for this system.</p>
+  
+  <img class="indent" src="images/Lline1.gif" alt="lagrange function"><br>
+  <img class="indent_large" src="images/Lline2.gif" alt="lagrange function"><br><br>
+  
+  <p>Differentiate <i>L</i> with respect to theta and we get</p>
+  
+  <img class="indent" src="images/patialLpartialtheta.gif" alt="lagrange function"><br><br>
+  
+  <p>Differentiate <i>L</i> with respect to the angular velocity and we get</p>
+  
+  <img class="indent" src="images/partialLpartialthetadot.gif" alt="lagrange function"><br><br>
+  
+  <p>Differentiate the above expression with respect to time and we get</p>
+  
+  <img class="indent" src="images/ddtpartialLpartialthetadot.gif" alt="lagrange function"><br><br>
+  
+  <p>Now we can plug the above derivatives into the Lagrange equation of motion</p>
+  
+  <img class="indent" src="images/equation.gif" alt="lagrange function"><br><br>
+  
+  <p>And solve for the angular acceleration</p>
+  
+  <img class="indent" src="images/acceleration.gif" alt="lagrange function"><br><br>
+  
+  <p>In the simulation, we can integrate the above expression to find the
+     angular velocity and integrate further to find the angular position.</p>
+     
+  <div align="center"><img src="images/animation.gif" alt="simulation"></div><br><br>
+  
+  <h2>User Interface</h2>
+  
+  <p>The simulation program uses the QT application framework to provide a
+     graphical interface for the user. This interface allows the user to change 
+     the initial pendulum angle, the pendulum length and mass, and the speed and 
+     amplitude of horizontal motion.</p>
+     
+  <div align="center"><img src="images/interface.png" alt="GUI" width="600"></div><br><br>
+     
+  <h2>Download</h2>
+  
+  <p><b>Download for QT 5.3.0:</b> 
+  <a href="downloads/lagrange_pendulum_qt.zip" target="_blank">Lagrange Pendulum Simulation</a></p>
+  
+  <b>Source: </b><a href="https://github.com/rlguy/lagrangependulum">
+                    https://github.com/rlguy/lagrangependulum</a>
+  
+  </div>
+  
+  <div class="blank">
+  </div>
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

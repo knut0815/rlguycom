@@ -1,0 +1,31 @@
+
+div.center_column {
+      width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+        
+div.blank {
+            height: 200px;
+          }
+          
+div.background_color {
+      width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #EEF5F5;
+      
+      padding-top: 10px;
+      padding-right: 10px;
+      padding-bottom: 20px;
+      padding-left: 10px;
+    }
+    
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid black;
+    padding: 10px;
+}
