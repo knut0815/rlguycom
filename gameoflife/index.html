@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700&subset=latin,greek-ext" 
+          rel="stylesheet" type="text/css"">
+    <link rel="stylesheet" type="text/css" href="../css/basic.css">
+
+	<title>Conway's Game of Life</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+
+<body>
+  <div class="center_column">
+  <h1>Conway's Game of Life</h1>
+  
+  <p>This program is a simple implementation of 
+  <a href="http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">
+    Conway's Game of Life
+  </a>. This version of Life implements the original 
+  <a href="http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Rules">
+    rules
+  </a> and also includes a rule for handling a game with cells of different colour. 
+  When a new cell is born, it will take on the average colour of it's neighbours. 
+  The left/right and top/bottom edges of the grid wrap around on eachother, so the grid in this 
+  version is not infinite as it is in the original Game of Life.</p>
+  
+  <h2>Video</h2>
+  
+  <p>The following video displays clips of the program evolving from various initial 
+  configurations. Some of the initial states include popular patterns such as the 
+  <a href="http://www.conwaylife.com/wiki/13-engine_Cordership">13-engine Cordership</a>, 
+  <a href="http://www.conwaylife.com/wiki/Infinite_growth#Small_infinite_growth_patterns">Paul Callahan's one row infinite growth pattern</a>, 
+  <a href="http://www.conwaylife.com/wiki/Breeder_1">Breeder 1 (Lobster)</a>, 
+  <a href="http://www.conwaylife.com/wiki/Max">Max</a>, and 
+  <a href="http://www.conwaylife.com/wiki/Halfmax">Halfmax</a>.</p>
+
+  <div align="center">
+  <iframe width="800" height="450" 
+    src="http://www.youtube.com/embed/LDNlwFTUbaI" frameborder="0" allowfullscreen>
+  </iframe><br><br>
+  </div>
+  
+  <h2>Controls</h2>
+  
+  The demo program starts with a randomized initial state with red and blue cells. 
+  At the top of the window, there is a meter that measures the ratio of red to 
+  blue cells to show which colour is "winning".
+  
+  <p><b>Run Game/Pause Game</b> - Press any key</p>
+  <p><b>Reset Game</b> - Right Click mouse button</p>
+  <p><b>Advance One Generation</b> - Mouse wheel</p>
+  <p><b>Move Camera View</b> - Arrow keys</p><br>
+  
+  <div align="center"><img src="images/screenshot.png" alt="Life"></div><br>
+  
+  <h2>Downloads</h2>
+  
+  <a href="downloads/life-x86.zip" target="_blank">Windows 32-bit</a><br><br>
+  <a href="downloads/life.app.zip" target="_blank">OS X</a><br><br>
+  <a href="downloads/life.love" target="_blank">Linux</a>
+   &nbsp - Linux users will need to install the LOVE package 
+   (<a href="http://love2d.org">http://love2d.org</a>)<br><br><br>
+  
+  <b>Source: </b><a href="https://github.com/rlguy/gameoflife">https://github.com/rlguy/gameoflife</a>
+  
+  <div class="blank">
+  </div>
+  
+</body>
+</html>
