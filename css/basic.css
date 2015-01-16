@@ -74,11 +74,16 @@ div.read_more {
 
     
     
-table {
+table.borders {
     border-collapse: collapse;
 }
 
-td, th {
+td.borders, th.borders {
     border: 1px solid black;
     padding: 10px;
 }
+
+
+
+
+
