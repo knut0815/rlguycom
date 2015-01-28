@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700&subset=latin,greek-ext" 
+          rel="stylesheet" type="text/css"">
+    <link rel="stylesheet" type="text/css" href="../css/basic.css">
+
+	<title>2D Implicit Surface Polygonizer</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+
+<body>
+  <div class="center_column">
+  <h1>2D Implicit Surface Polygonizer</h1>
+  
+  <p>This program is an implementation of a 2D implicit surface polygonizer. The 
+  polygonizer creates a surface boundary from objects defined by implicit field functions. The 
+  marching cubes algorithm is used to extract the boundary of an isoline.
+  This program supports implicit primitives for circles, lines, and rectangles. 
+  Written in Lua and used the LOVE framework.
+  </p>
+  
+  <h2>Video</h2>
+  
+  <p>The following video shows the program running and the features of the user interface</p>
+  
+  <div align="center">
+  <iframe width="800" height="450" 
+    src="http://www.youtube.com/embed/K6LUHTaMb4E" frameborder="0" allowfullscreen>
+  </iframe><br><br>
+  </div>
+  
+  <h2>User Interface</h2>
+  
+  <p>The graphical interface allows the user to add, move, and change the size 
+  of primitives.</p>
+  
+  <br><div align="center"><img src="images/interface.png" alt="GUI"></div><br>
+  
+  <h3>Adding Primitives to the Polygonizer</h3>
+  
+  <p>Select the corresponding button to add a point, line, or circle primitive</p>
+  
+  <p>To <b>add a point</b>, press and release the left mouse button</p>
+  
+  <p>To <b>add a line</b> or <b>add a rectangle</b>, hold down the left mouse 
+  button, drag the mouse, and release.</p><br>
+
+  <h3>Move and Change the Size of a Primitive</h3>
+  
+  <p>Enter the <b>Select</b> interface mode to move and change the size of a primitive</p>
+  
+  <p>To <b>select a primitive</b>, hover over the object with the mouse and press the 
+  left mouse button. Alternatively, scroll through the primitives by pressing the 
+  left or right arrow keys.</p>
+  
+  <p>To <b>remove a primitive</b>, hover over the object with the mouse and press the 
+  right mouse button.</p>
+  
+  <p>To <b>move a primitive</b>, hold down the left mouse button and drag the object to
+  the desired position.</p>
+
+  <p>To <b>change the size of a primitive</b>, press the up or down key on the keyboard 
+  or scroll the mouse wheel to increase or decrease the size of the object.</p><br>
+  
+  <h3>Animate the Primitives</h3>
+  
+  <p>Select the <b>Animate</b> interface mode and watch the primitives bounce around
+  the screen.</p><br>
+  
+  <h2>Downloads</h2>
+  
+  <a href="downloads/polygonizer-x86.zip" target="_blank">Windows 32-bit</a><br><br>
+  <a href="downloads/polygonizer.app.zip" target="_blank">OS X</a><br><br>
+  <a href="downloads/polygonizer.love" target="_blank">Linux</a>
+   &nbsp - Linux users will need to install the LOVE package 
+   (<a href="http://love2d.org">http://love2d.org</a>)<br><br><br>
+  
+  <b>Source: </b><a href="https://github.com/rlguy/2d-polygonizer">https://github.com/rlguy/2d-polygonizer</a>
+  
+   
+  <div class="blank">
+  </div>
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
