@@ -32,20 +32,20 @@
      
   <h2>User Interface</h2>
       
-  <p>The animator adds keyframe frame nodes to the curves by clicking the "Add 
-  point to Rocket Spline" and "Add Point to Camera Spline" buttons. Nodes are 
+  <p>The animator adds keyframe frame nodes to the curves by clicking the <b>Add 
+  point to Rocket Spline</b> and <b>Add Point to Camera Spline</b> buttons. Nodes are 
   added to the end of the corresponding curve at a position near the last node 
   on the curve. 
   </p>
   
-  <p>The animator can view the animation from either the view in the editing window 
-  or from the view of the camera curve. Clicking the "Animate" button starts the 
-  animation. Any mouse input or keyboard input during the animation will stop the 
+  <p>The animator is able to view the animation from either the view in the editing window 
+  or from the view of the camera curve. Clicking the <b>Animate</b> button starts the 
+  animation. Any mouse input or keyboard input during playback will stop the 
   animation and take the user back to the editing window.
   </p>
   
   <p>The velocity slider controls the maximum velocity of the rocket ship. The 
-  acceleration slider controls how fast the rocket accelerates to it's maximum 
+  acceleration slider controls how fast the rocket accelerates to its maximum 
   velocity.
   </p>
   
@@ -89,7 +89,7 @@
                            width="600"></div>
   <p align="center"><i>Figure 3. Animation Preview</i></p><br>
   
-  <h2>Controlling Camera in the Editing View</h2>
+  <h2>Controlling the Camera in the Editing View</h2>
   
   <p>The editing view camera is controlled using keyboard input:</p>
   
@@ -99,7 +99,7 @@
     &nbsp;&nbsp;&nbsp;<b>T/G</b> - Move up/down along camera's up vector<br><br>
     &nbsp;&nbsp;&nbsp;<b>Q/E</b> - Rotate camera left/right (about up vector)<br>
     &nbsp;&nbsp;&nbsp;<b>R/F</b> - Rotate camera down/up (about right side vector)<br>
-    &nbsp;&nbsp;&nbsp;<b>Z/X</b> - Roll camera left/right about it's direction vector<br>
+    &nbsp;&nbsp;&nbsp;<b>Z/X</b> - Roll camera left/right about its direction vector<br>
   </p><br>
   
   <h2>Algorithms and Data Structures</h2>
@@ -108,9 +108,9 @@
   The splines are parameterized by arc length along the curve.</p>
   
   <p>Quaternions are used to interpolate between keyframe rotations using the 
-  spherical linear interpolation method.</p>
+  spherical linear interpolation method (SLERP).</p>
   
-  <p>The arcball algorithm is used to rotate a node from the 3D perspective 
+  <p>The arcball algorithm is used to rotate a node through the 3D perspective 
   window.</p>
   
   <h2>Description of Important Files</h2>
@@ -135,7 +135,7 @@
     </tr>
     <tr>
       <td class="borders"><b>arcball.cpp</b></td>
-      <td class="borders">Implements arcball method of rotation in 3D perspective window</td>
+      <td class="borders">Implements arcball method of rotation from the 3D perspective window</td>
     </tr>
     <tr>
       <td class="borders"><b>translationnode.cpp</b></td>

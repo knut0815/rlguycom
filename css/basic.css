@@ -31,11 +31,24 @@ hr {
     background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 450, from(#AAA), to(#fff));
     width: 970px;
 }
+
+div.front_page_column {
+      width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
           
 div.center_column {
       width: 800px;
       margin-left: auto;
       margin-right: auto;
+    }
+    
+div.center_column_justify {
+      width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: justify;
     }
         
 div.blank {

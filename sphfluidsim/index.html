@@ -30,7 +30,7 @@
 <body>
 
   <h1 align="center">Smoothed Particle Hydrodynamics Fluid Simulation</h1>
-  <div class="center_column">
+  <div class="center_column_justify">
   
   <p align="center">Ryan L. Guy<br>
                     University of Victoria<br>
@@ -44,7 +44,7 @@
   <p>This paper presents a simple implementation of a liquid fluid simulation 
   using the method of Smoothed Particle Hydrodynamics (SPH). The SPH model is a 
   Lagrangian method that can be used to model fluid flow by treating each particle 
-  as a discrete element of fluid. The implementation covers a set of basic equations 
+  as a discrete element of fluid. This paper covers a set of basic equations 
   used to model a fluid, a spatial data structure to accelerate fluid calculations, 
   and a method to handle interaction between fluid and solid obstacles.
   </p><br>
@@ -53,25 +53,25 @@
   
   <p>Each SPH fluid particle is treated as a discrete element of fluid. The motion 
   of a fluid particle is influenced by other particles within some finite radius. 
-  The influence a particle has on another is dependent on the distance between the 
-  particles. How much influence a particle has on another depends on the smoothing kernel, 
+  The influence that a particle has on another is dependent on the distance between the 
+  particles. The amount of influence that a particle has on another depends on the smoothing kernel, 
   which is a single variable function dependent on radius. Since the SPH method is pure 
-  Lagrangian, a particles motion is based on the current acceleration value at a point in time. 
+  Lagrangian, a particle's motion is based on the current acceleration value at a point in time. 
   The acceleration of a particle takes into account the density, pressure, and relative 
-  velocities of it's surrounding particles.
+  velocities of its surrounding particles.
   </p>
   
   <p>In order to calculate the density and pressure of a particle, we need to locate 
-  it's neighbour particles within some radius. To efficiently find neighbours for each 
+  its neighbour particles within some radius. To efficiently find neighbours for each 
   particle, a spatial grid is used to refine the search to only particles that are near 
   to each other.
   </p>
   
   <p>In this implementation, solid objects are modelled in two different ways. 
-  The fluid boundaries are treated as planes that a particle cannot intersect. 
-  These planes also provide a repulsive force on the particles to keep them away 
+  The fluid boundaries are treated as a set of planes that a particle cannot intersect. 
+  These planes also provide a repulsive force on the particle to keep it away 
   from the boundaries. Moving objects are treated as a set of fluid particles whose 
-  motion are controlled by an external source. These obstacle particles do not move 
+  motion is controlled by an external source. These obstacle particles do not move 
   based on their acceleration, but do keep track of their density and pressure so other 
   particles can react to them.
   </p><br>
@@ -79,13 +79,13 @@
   <h2>3 Implementation</h2>
   
   <p>This section gives relevant implementation details for this SPH fluid simulation 
-  and will cover governing equations, time step calculation,  dynamic spatial grid 
-  data structure, object-fluid interaction, and user interface.
+  and will cover the governing equations, the time step calculation, the dynamic spatial grid 
+  data structure, the methods of object-fluid interaction, and the user interface.
   </p>
   
   <h3>3.1 Governing Equations</h3>
   
-  <p>In order to find a particle's acceleration, it's density and pressure must be 
+  <p>In order to find a particle's acceleration, its density and pressure must be 
   calculated. The following equation sums the masses of a particle's neighbours 
   weighted by a kernel function.
   </p>
@@ -107,13 +107,13 @@
   <br><div align="center"><img src="images/image09.gif" alt="pressure"></div><br>
   
   <p>Where P is pressure, p is the density of the particle, p0 is the reference density 
-  of the fluid and K is a pressure constant. For this implementation the reference 
-  density and pressure constant were both chosen to be 20. In this equation, 
-  density is set to the reference density if the value is less than the reference 
+  of the fluid and K is a pressure constant. For this implementation, the reference 
+  density and pressure constant were both chosen to be 20. In this implementation, 
+  the resulting density is set to the reference density if the value is less than the reference 
   density to avoid negative pressures.
   </p>
   
-  <p>Now that the pressure and density of all particles are calculated, the acceleration 
+  <p>Now that the pressure and density of all particles have been calculated, the acceleration 
   of a particle can be computed as:
   </p>
   
@@ -126,7 +126,7 @@
   
   <br><div align="center"><img src="images/image03.gif" alt="spikey kernel"></div><br>
 
-  <p>The above acceleration is caused by the mass, density and pressure of the particles. 
+  <p>The above acceleration is caused by the mass, density and pressure of the surrounding particles. 
   To dampen the motion of the system, the velocities of surrounding particles can be taken 
   into account to add a viscosity term to the acceleration:
   </p>
@@ -134,7 +134,7 @@
   <br><div align="center"><img src="images/image10.gif" alt="viscosity"></div><br>
 
   <p>Where av is the acceleration due to viscosity, epsilon is the viscosity constant 
-  (chosen as 0.018 in this implementation), v is the velocities of the respective 
+  (chosen as 0.018 in this implementation), v is the velocity of the respective 
   particle, and W is the laplacian of the following viscosity smoothing kernel:
   </p>
   
@@ -147,14 +147,14 @@
   <h3>3.2 Calculating Time Step</h3>
   
   <p>The goal of choosing a time step is to choose the largest value such that a 
-  particle will move less than one smoothing radius. The following equation was 
-  used in this implementation:
+  particle will move less than one smoothing radius in a single time step. The following equation was 
+  used for calculating the next time step in this implementation:
   </p>
   
   <br><div align="center"><img src="images/image12.gif" alt="time step"></div><br>
   
   <p>Where v and a are the maximum velocities and accelerations in the particle system, 
-  c is the speed of sound, and C is the Courant safety constant, chosen as 1.0 in this 
+  c is the maximum speed of sound, and C is the Courant safety constant, chosen as 1.0 in this 
   simulation. The safety constant can be set to a higher value for larger timesteps. 
   The speed of sound is calculated with the following equation:
   </p>
@@ -166,7 +166,7 @@
   
   <h3>3.3 Dynamic Spatial Grid</h3>
   
-  <p>In order to accelerate the nearest neighbour search of all particles, a fixed 
+  <p>In order to accelerate the nearest neighbour search for all particles, a fixed 
   width spatial grid data structure was implemented. The size of the grid is dynamic, 
   and grid cells only exist where there is fluid. This means that the memory usage of 
   the grid is proportional to the amount of fluid.
@@ -184,7 +184,7 @@
   <p>Since the particles are only looking up the nearest neighbours within one smoothing 
   radius, we know that at most the particle's cell and 26 cell neighbours need to be 
   looked up. To speed up this process, and to avoid repetitive hash lookups, each grid 
-  cell keeps track of it's direct neighbours in an array.
+  cell keeps track of its direct neighbours in an array.
   </p>
 
   <br><div align="center"><img src="images/image06.png" 
@@ -194,15 +194,15 @@
   <h3>3.4 Object-Fluid Interaction</h3>
   
   <p>Object-fluid interaction is handled in two separate ways depending on the type 
-  of object. Static Fluid boundaries are handled with planes that the particles cannot 
-  intersect. The boundary planes are given an increasing repulsive force to push away 
-  particles that are too close to the boundary. If a particle hits a boundary, the 
+  of object. Static fluid boundaries are handled with planes that the particles cannot 
+  intersect. The boundary planes are given a repulsive force in the direction of their 
+  normals to push away particles that are too close to the boundary. If a particle hits a boundary, the 
   particle's velocity is adjusted so that it bounces off the surface.
   </p>
   
   <p>Moving objects are handled by constructing the shape with fluid particles. These 
   obstacle particles interact with regular fluid particles as if they were a fluid, 
-  except that their motion is controlled by an external force instead of acceleration. 
+  except that their motion is controlled by an external force instead of the particle's acceleration. 
   Since obstacle particles are not affected by acceleration, only their pressure and 
   density values are computed. Each obstacle particle is updated for velocity depending 
   on the motion of the object.</p>
@@ -253,14 +253,14 @@
   
   <h2>5 Conclusions</h2>
   
-  <p>Overall, this SPH fluid simulation method was a simple to implement and gives 
+  <p>Overall, this SPH fluid simulation method was simple to implement and gives 
   graphically believable results for a compressible fluid. Simulation constants 
   are difficult to tweak in order to achieve an incompressible fluid such as water. 
   To model an incompressible fluid, a grid based Navier-Stokes solver would produce more
   realistic results. 
   </p>
   
-  <p>The major bottleneck in simulating a SPH fluid is the nearest neighbour search. 
+  <p>The major bottleneck in simulating this SPH fluid is the nearest neighbour search. 
   To speed up simulation times, effort should be focused on optimizing the spatial 
   grid.</p><br>
   
