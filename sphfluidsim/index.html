@@ -4,30 +4,47 @@
 
 <head>
 
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700&subset=latin,greek-ext" 
-          rel="stylesheet" type="text/css"">
+          rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="../css/basic.css">
-
-    <style>
     
-    img.indent {
-                    position: relative;
-                    left: 40px;
-                 }
-                 
-    img.indent_large {
-                    position: relative;
-                    left: 140px;
-                 }
-                 
-    </style>
-    
-	<title>Smoothed Particle Hydrodynamics Fluid Simulation</title>
+	<title>Smoothed Particle Hydrodynamics Fluid Simulation | Ryan Guy's Portfolio</title>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+  </script>
 </head>
 
 <body>
+
+  <div class="front_page_column">
+    <div class="header">
+          <div class="header_name">
+              RLGUY
+          </div>
+
+          <div class="header_links">
+              <ul>
+                  <li class="header_link"><a class="header_link" href="../index.html">Home</a> </li>
+                  <li class="header_link"><a class="header_link" href="../portfolio/index.html">Portfolio</a></li> 
+                  <li class="header_link"><a class="header_link" href="../projects/index.html">Projects</a></li> 
+                  <li class="header_link"><a class="header_link" href="../resume/index.html">Resume</a> </li>
+                  <li class="header_link"><a class="header_link" href="mailto:ryan.l.guy@gmail.com">Contact</a></li>
+              </ul>
+          </div>
+          <hr>
+
+          <div class="icon_links">
+              <ul>
+                  <li><a class="icon_github" href="https://github.com/rlguy" target="_blank"></a></li>
+                  <li><a class="icon_youtube" href="https://www.youtube.com/channel/UCUiHivn6dWFP4eb2kVcKDyw" target="_blank"></a></li>
+              </ul>
+          </div>
+      </div>
+      <br><br>
+  </div>
 
   <h1 align="center">Smoothed Particle Hydrodynamics Fluid Simulation</h1>
   <div class="center_column_justify">
@@ -45,69 +62,68 @@
   using the method of Smoothed Particle Hydrodynamics (SPH). The SPH model is a 
   Lagrangian method that can be used to model fluid flow by treating each particle 
   as a discrete element of fluid. This paper covers a set of basic equations 
-  used to model a fluid, a spatial data structure to accelerate fluid calculations, 
-  and a method to handle interaction between fluid and solid obstacles.
+  used to model a fluid, a spatial data structure to accelerate nearest neighbour search, 
+  and a method to handle interaction between fluid and solid objects.
   </p><br>
   
   <h2>2 Introduction</h2>
   
   <p>Each SPH fluid particle is treated as a discrete element of fluid. The motion 
   of a fluid particle is influenced by other particles within some finite radius. 
-  The influence that a particle has on another is dependent on the distance between the 
-  particles. The amount of influence that a particle has on another depends on the smoothing kernel, 
+  The amount of influence that a particle has on another depends on the smoothing kernel, 
   which is a single variable function dependent on radius. Since the SPH method is pure 
   Lagrangian, a particle's motion is based on the current acceleration value at a point in time. 
   The acceleration of a particle takes into account the density, pressure, and relative 
   velocities of its surrounding particles.
   </p>
   
-  <p>In order to calculate the density and pressure of a particle, we need to locate 
-  its neighbour particles within some radius. To efficiently find neighbours for each 
-  particle, a spatial grid is used to refine the search to only particles that are near 
-  to each other.
+  <p>In order to calculate the density of a particle and the pressure that it exerts on the
+  system, we need to locate its neighbour particles within some radius. To efficiently find 
+  neighbours for each particle, a spatial grid is used to refine the search to only particles 
+  that are near to each other.
   </p>
   
   <p>In this implementation, solid objects are modelled in two different ways. 
-  The fluid boundaries are treated as a set of planes that a particle cannot intersect. 
-  These planes also provide a repulsive force on the particle to keep it away 
-  from the boundaries. Moving objects are treated as a set of fluid particles whose 
+  The fluid domain boundaries are treated as a set of planes that a particle cannot intersect. 
+  These static planes also exert a repulsive force on the particles to keep them away 
+  from the boundaries. Dynamic objects are treated as a set of fluid particles whose 
   motion is controlled by an external source. These obstacle particles do not move 
-  based on their acceleration, but do keep track of their density and pressure so other 
+  based on their acceleration, but do keep track of their density and pressure so that other 
   particles can react to them.
   </p><br>
   
   <h2>3 Implementation</h2>
   
-  <p>This section gives relevant implementation details for this SPH fluid simulation 
+  <p>This section provides relevant implementation details for this SPH fluid simulation 
   and will cover the governing equations, the time step calculation, the dynamic spatial grid 
   data structure, the methods of object-fluid interaction, and the user interface.
   </p>
   
   <h3>3.1 Governing Equations</h3>
   
-  <p>In order to find a particle's acceleration, its density and pressure must be 
+  <p>In order to find a particle's acceleration, its density and pressure values must be 
   calculated. The following equation sums the masses of a particle's neighbours 
   weighted by a kernel function.
   </p>
   
-  <br><div align="center"><img src="images/image08.gif" alt="density"></div><br><br>
+  $$ {\large p_i = \sum_{j}^{ } m_jW_{ij} } $$
   
-  <p>Where p is density, m is mass and W is the Poly6 smoothing kernel:</p>
+  <p>Where \(p\) is density, \(m\) is mass and \(W\) is the Poly6 smoothing kernel:</p>
   
-  <br><div align="center"><img src="images/image05.gif" alt="poly6"></div><br>
+  $$ {\large  W_{ij} = \frac{315}{64\pi h^9}\left( h^2 - r^2 \right)^3 } $$
   
-  <p>Where h (chosen as 0.2) is the smoothing radius and r is the distance between 
+  <p>Where \(h\) (chosen as 0.2) is the smoothing radius and \(r\) is the distance between 
      particles. This equation has the advantage of not computing a square root for 
-     the distance between particles since r is already squared in the equation.</p>
+     the distance between particles since the radius is already squared in the equation.</p>
      
-  <p>Once a particle's density is found, the pressure can be computed via the ideal 
+  <p>Once a particle's density is found, the pressure can be computed using the ideal 
   gas law:
   </p>
 
-  <br><div align="center"><img src="images/image09.gif" alt="pressure"></div><br>
+  $$ {\large P = K\left ( p - p_0 \right ) } $$
   
-  <p>Where P is pressure, p is the density of the particle, p0 is the reference density 
-  of the fluid and K is a pressure constant. For this implementation, the reference 
+  <p>Where \(P\) is pressure, \(p\) is the density of the particle, \(p_0\) is the reference density 
+  of the fluid, and \(K\) is a pressure constant. For this implementation, the reference 
   density and pressure constant were both chosen to be 20. In this implementation, 
   the resulting density is set to the reference density if the value is less than the reference 
   density to avoid negative pressures.
@@ -117,28 +133,31 @@
   of a particle can be computed as:
   </p>
   
-  <br><div align="center"><img src="images/image00.gif" alt="acceleration"></div><br>
+  $$ {\large a_i = -\sum_{j}^{ }\frac{m_j}{m_i}\frac{P_i + P_j}
+             {2p_ip_j}\bigtriangledown W_{ij} \hat{r}_{ij} } $$
 
-  <p>Where a is the acceleration, P is the pressure of the respective particle, r 
-  is the normalized vector of the position of particle j to particle i and W is the 
+  <p>Where \(a\) is the acceleration, \(P\) is the pressure of the respective particle, 
+  \(\hat{r}_{ij}\) 
+  is the normalized vector of the position of particle \(j\) to particle \(i\) and \(W\) is the 
   gradient of the following Spiky kernel smoothing function:
   </p>
   
-  <br><div align="center"><img src="images/image03.gif" alt="spikey kernel"></div><br>
+  $$ {\large W_{ij} = -\frac{45}{\pi h^6}\left ( h - r \right )^2 } $$
 
-  <p>The above acceleration is caused by the mass, density and pressure of the surrounding particles. 
+  <p>The above acceleration is caused by the mass, density, and pressure of the surrounding particles. 
   To dampen the motion of the system, the velocities of surrounding particles can be taken 
   into account to add a viscosity term to the acceleration:
   </p>
   
-  <br><div align="center"><img src="images/image10.gif" alt="viscosity"></div><br>
+  $$ {\large a_{v_i} = \epsilon \sum_{j}^{ }\frac{m_j}{m_i}\frac{1}{p_j}
+             \left ( v_j - v_i \right ) \bigtriangledown^2 W_{ij} \hat{r}_{ij} } $$
 
-  <p>Where av is the acceleration due to viscosity, epsilon is the viscosity constant 
-  (chosen as 0.018 in this implementation), v is the velocity of the respective 
-  particle, and W is the laplacian of the following viscosity smoothing kernel:
+  <p>Where \(a_v\) is the acceleration due to viscosity, \(\epsilon\) is the viscosity constant 
+  (chosen as 0.018 in this implementation), \(v\) is the velocity of the respective 
+  particle, and \(W\) is the laplacian of the following viscosity smoothing kernel:
   </p>
   
-  <br><div align="center"><img src="images/image04.gif" alt="viscosity kernel"></div><br>
+  $$ {\large  W_{ij} = -\frac{r^3}{2h^3} + \frac{r^2}{h^2} + \frac{h}{2r} - 1 } $$
   
   <p>In addition to adding the viscosity term to the particle's acceleration, the 
   acceleration due to the force of gravity is also added.
@@ -151,22 +170,23 @@
   used for calculating the next time step in this implementation:
   </p>
   
-  <br><div align="center"><img src="images/image12.gif" alt="time step"></div><br>
+  $$ {\large \bigtriangleup t = \max\left ( \frac{Ch}{v_{\text{max}}},
+             \sqrt{\frac{h}{a_{\text{max}}}}, \frac{Ch}{c_{\text{max}}} \right ) } $$
   
-  <p>Where v and a are the maximum velocities and accelerations in the particle system, 
-  c is the maximum speed of sound, and C is the Courant safety constant, chosen as 1.0 in this 
+  <p>Where \(v_{\text{max}}\) and \(a_{\text{max}}\) are the maximum velocities and accelerations in the particle system, 
+  \(c_{\text{max}}\) is the maximum speed of sound, and \(C\) is the Courant safety constant, chosen as 1.0 in this 
   simulation. The safety constant can be set to a higher value for larger timesteps. 
   The speed of sound is calculated with the following equation:
   </p>
   
-  <br><div align="center"><img src="images/image07.gif" alt="speed of sound"></div><br>
+  $$ {\large c = \sqrt{\frac{ \gamma P}{p}} } $$
   
-  <p>Where c is the speed of sound and gamma is the ratio of specific heats, which 
+  <p>Where \(c\) is the speed of sound and \(\gamma\) is the ratio of specific heats, which 
   is set to 1.0 in this simulation.</p>
   
   <h3>3.3 Dynamic Spatial Grid</h3>
   
-  <p>In order to accelerate the nearest neighbour search for all particles, a fixed 
+  <p>In order to accelerate the nearest neighbour search of all particles, a fixed 
   width spatial grid data structure was implemented. The size of the grid is dynamic, 
   and grid cells only exist where there is fluid. This means that the memory usage of 
   the grid is proportional to the amount of fluid.
@@ -176,7 +196,7 @@
   hash function:
   </p>
 
-  <br><div align="center"><img src="images/image02.gif" alt="worly hash"></div><br>
+  $$ {\large \text{hash} = 541i + 79j + 31k } $$
   
   <p>Where i, j, k are the respective x, y, z grid indices. The grid cell width is 
   set to one smoothing radius. </p>
@@ -200,7 +220,7 @@
   particle's velocity is adjusted so that it bounces off the surface.
   </p>
   
-  <p>Moving objects are handled by constructing the shape with fluid particles. These 
+  <p>Dynamic objects are handled by constructing the shape with fluid particles. These 
   obstacle particles interact with regular fluid particles as if they were a fluid, 
   except that their motion is controlled by an external force instead of the particle's acceleration. 
   Since obstacle particles are not affected by acceleration, only their pressure and 
@@ -220,10 +240,10 @@
   
   <h2>4 Results</h2>
   
-  <p>To gauge the speed of the simulation, a dam break scenario was created and 
+  <p>To gauge the performance of the simulation, a dam break scenario was created and 
   tested on three datasets of 48958, 98958, and 210504 particles respectively. 
   The dam break consists of three object panels holding back a column of fluid. The 
-  middle panel is then lifted to release the fluid.
+  centre panel is then lifted to release the fluid into the rest of the simulation domain.
   </p>
   
   <br><div align="center"><img src="images/image11.jpg" alt="Dam Break"></div><br>
@@ -255,8 +275,8 @@
   
   <p>Overall, this SPH fluid simulation method was simple to implement and gives 
   graphically believable results for a compressible fluid. Simulation constants 
-  are difficult to tweak in order to achieve an incompressible fluid such as water. 
-  To model an incompressible fluid, a grid based Navier-Stokes solver would produce more
+  were difficult to tweak in order to achieve an incompressible fluid such as water. 
+  To model an incompressible fluid, a grid based Navier-Stokes solver may produce more
   realistic results. 
   </p>
   
@@ -269,7 +289,8 @@
   <p>
   Roy, Trina. "Physically-Based Fluid Modeling Using Smoothed Particle Hydrodynamics." 
   <i>Physically-Based<br> Fluid Modeling Using Smoothed Particle Hydrodynamics.</i> 1 Jan. 
-  1995. Web. 5 Jan. 2015. <br>&#60;http://www.plunk.org/~trina/thesis/html/thesis_toc.html&#62;.
+  1995. Web. 5 Jan. 2015. <br>
+  <a href="http://www.plunk.org/~trina/thesis/html/thesis_toc.html">&#60;http://www.plunk.org/~trina/thesis/html/thesis_toc.html&#62;.</a>
   </p>
   
   <p>Cline, David, David Cardon, and Parris K. Egbert. <i>Fluid Flow for the Rest 
@@ -281,7 +302,8 @@
   
   <p>Wang, Lei. "Fluid with Free Surfaces by Smoothed Particle Hydrodynamics." 
   <i>Lei Wang.</i> Web. 5 Jan. 2015. 
-  <br><http://web.cse.ohio-state.edu/~wangle/courses/788au11/788au11.html>.</p>
+  <br><a href="http://web.cse.ohio-state.edu/~whmin/courses/cse788-2011-fall/results/Lei_Wang/788au11.html">
+         &#60;http://web.cse.ohio-state.edu/~whmin/courses/cse788-2011-fall/results/Lei_Wang/788au11.html&#62;.</a></p>
   
   <p>T, Jakobsen. <i>SPH Survival Kit.</i> N.p.: n.p., n.d. PDF.</p><br><br>
   

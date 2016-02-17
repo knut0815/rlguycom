@@ -4,10 +4,26 @@ body {
         color: #666666;
      }
      
-h1, h2, h3, h4 {
-                  font-family: 'Open Sans Condensed', sans-serif;
-                  color: #777777;
-               }
+h1  {
+      font-family: 'Open Sans Condensed', sans-serif;
+      color: #777777;
+      font-weight: normal;
+      font-size: 250%;
+    }
+
+h2  {
+      font-family: 'Open Sans Condensed', sans-serif;
+      color: #777777;
+      font-weight: normal;
+      font-size: 175%;
+    }
+
+h3  {
+      font-family: 'Open Sans Condensed', sans-serif;
+      color: #777777;
+      font-weight: normal;
+      font-size: 150%;
+    }
                
 a:link    {
             color:#2b95d1;
@@ -27,9 +43,99 @@ hr {
     border:none;
     color:#666666;
     height:1px;
-    background:#666666;
-    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 450, from(#AAA), to(#fff));
+    background: rgba(200,200,200,0);
+    background: -moz-radial-gradient(center, ellipse cover, rgba(200,200,200,0) 0%, rgba(200,200,200,1) 0%, rgba(200,200,200,0) 74%, rgba(200,200,200,0) 100%);
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(200,200,200,0)), color-stop(0%, rgba(200,200,200,1)), color-stop(74%, rgba(200,200,200,0)), color-stop(100%, rgba(200,200,200,0)));
+    background: -webkit-radial-gradient(center, ellipse cover, rgba(200,200,200,0) 0%, rgba(200,200,200,1) 0%, rgba(200,200,200,0) 74%, rgba(200,200,200,0) 100%);
+    background: -o-radial-gradient(center, ellipse cover, rgba(200,200,200,0) 0%, rgba(200,200,200,1) 0%, rgba(200,200,200,0) 74%, rgba(200,200,200,0) 100%);
+    background: -ms-radial-gradient(center, ellipse cover, rgba(200,200,200,0) 0%, rgba(200,200,200,1) 0%, rgba(200,200,200,0) 74%, rgba(200,200,200,0) 100%);
+    background: radial-gradient(ellipse at center, rgba(200,200,200,0) 0%, rgba(200,200,200,1) 0%, rgba(200,200,200,0) 74%, rgba(200,200,200,0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aaaaaa', endColorstr='#aaaaaa', GradientType=1 );
     width: 970px;
+}
+
+div.header {
+      width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+    }
+
+div.header_name {
+      font-family: 'Open Sans Condensed', sans-serif;
+      color: #777777;
+      font-weight: normal;
+      font-size: 300%;
+      vertical-align:top;
+    }
+
+li.header_link {
+  display: inline;
+  padding-left: 20px;
+}
+
+a.header_link {
+  font-family: 'Open Sans', sans-serif;
+  color: #777777;
+  font-weight: normal;
+  font-size: 110%;
+}
+
+a.header_link:hover {
+  color: #2b95d1;
+}
+
+div.header_links {
+      right: 0;
+      bottom: 0;
+      position: absolute;
+    }
+
+a.icon_github {
+   width: 40px;
+   height:40px;
+   display:block;
+   background:transparent url('../images/icons/github.png') center top no-repeat;
+}
+
+a.icon_github:hover {
+   background-image: url('../images/icons/github_hover.png');
+}
+
+a.icon_youtube {
+   width: 40px;
+   height:40px;
+   display:block;
+   background:transparent url('../images/icons/youtube.png') center top no-repeat;
+}
+
+a.icon_youtube:hover {
+   background-image: url('../images/icons/youtube_hover.png');
+}
+
+.icon_links { 
+  right: 0;
+  bottom: -55px;
+  position: absolute;
+}
+.icon_links ul { 
+  padding:0; 
+  margin:0; 
+  list-style:none; 
+  border:0; 
+  float:left;
+}
+.icon_links ul li { 
+  float:left; 
+  margin:0; 
+  padding:0;
+  border:0;
+}
+.icon_links ul li a { 
+  float:left; 
+  margin:0; 
+  padding-left: 8px;  
+  text-decoration:none;
 }
 
 div.front_page_column {
@@ -57,8 +163,8 @@ div.blank {
           
 div.background_color {
       position: relative;
-      width: 950px;
-      height: 300px;
+      width: 925px;
+      height: 225px;
       margin-left: auto;
       margin-right: auto;
       background-color: #FFF;
@@ -70,12 +176,12 @@ div.background_color {
     }
    
 div.visual {
-    width: 500px;
+    width: 400px;
     float: left;
 }
 
 div.description {
-    margin-left: 530px;
+    margin-left: 425px;
 }
 
 div.read_more {
