@@ -2,3 +2,5 @@
 *.zip
 *.mp4
 *.love
+*.sublime-project
+*.sublime-workspace
