@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700&subset=latin,greek-ext" 
+          rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../css/basic.css">
+
+	<title>Gradient Editor | Ryan Guy's Portfolio</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+
+<body>
+  <div class="front_page_column">
+    <div class="header">
+          <div class="header_name">
+              RLGUY
+          </div>
+
+          <div class="header_links">
+              <ul>
+                  <li class="header_link"><a class="header_link" href="../index.html">Home</a> </li>
+                  <li class="header_link"><a class="header_link" href="../portfolio/index.html">Portfolio</a></li> 
+                  <li class="header_link"><a class="header_link" href="../projects/index.html">Projects</a></li> 
+                  <!--<li class="header_link"><a class="header_link" href="../resume/index.html">Resume</a> </li>-->
+                  <li class="header_link"><a class="header_link" href="mailto:ryan.l.guy@gmail.com">Contact</a></li>
+              </ul>
+          </div>
+          <hr>
+
+          <div class="icon_links">
+              <ul>
+                  <li><a class="icon_github" href="https://github.com/rlguy" target="_blank"></a></li>
+                  <li><a class="icon_youtube" href="https://www.youtube.com/channel/UCUiHivn6dWFP4eb2kVcKDyw" target="_blank"></a></li>
+              </ul>
+          </div>
+      </div>
+      <br><br>
+  </div>
+  
+  <div class="center_column">
+  <h1>Gradient Editor</h1>
+  
+  <p>This tool provides a simple way for a user to generate gradient colour data. </p>
+  
+  <br><div align="center"><img src="images/low_vs_high.png" alt="GUI"></div><br>
+  
+  <h2>How to Use</h2>
+  
+  <p><b>1.</b> Choose the initial and final colours using the colour sliders on the right. 
+        Colours can be edited by RGB or by HSL values.<br><br>
+     <b>2.</b> Edit the HSL curves in the middle to your liking.<br><br>
+     <b>3.</b> Once satisfied with the gradient, click the "Save to Clipboard" button to 
+        copy the gradient data to the clipboard.</p>
+  
+  <p>Gradient data is stored in the clipboard as a Lua table of RGBA tables. 
+  The order of colours is from top to bottom in the gradient preview bar. Example:</p>
+  
+  <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></td><td><pre style="margin: 0; line-height: 125%">{
+{<span style="color: #009999">28</span>,<span style="color: #009999">138</span>,<span style="color: #009999">184</span>,<span style="color: #009999">255</span>},
+{<span style="color: #009999">27</span>,<span style="color: #009999">150</span>,<span style="color: #009999">189</span>,<span style="color: #009999">255</span>},
+{<span style="color: #009999">26</span>,<span style="color: #009999">163</span>,<span style="color: #009999">195</span>,<span style="color: #009999">255</span>},
+{<span style="color: #009999">26</span>,<span style="color: #009999">176</span>,<span style="color: #009999">200</span>,<span style="color: #009999">255</span>},
+{<span style="color: #009999">26</span>,<span style="color: #009999">190</span>,<span style="color: #009999">205</span>,<span style="color: #009999">255</span>},
+{<span style="color: #009999">26</span>,<span style="color: #009999">204</span>,<span style="color: #009999">209</span>,<span style="color: #009999">255</span>},
+{<span style="color: #009999">26</span>,<span style="color: #009999">214</span>,<span style="color: #009999">210</span>,<span style="color: #009999">255</span>},
+{<span style="color: #009999">27</span>,<span style="color: #009999">218</span>,<span style="color: #009999">204</span>,<span style="color: #009999">255</span>}
+}
+</pre></td></tr></table></div>
+
+  <p>The graphical interface does not provide a way to choose how many colours are 
+  generated. By default, the editor will generate 400 colour values. If you want 
+  to change the number of colours generated, you can run the program from the 
+  command line and pass in the number of colours as an argument.</p>
+
+
+  <h2>Downloads</h2>
+  
+  <a href="downloads/gradient_editor-x86.zip" target="_blank">Windows 32-bit</a><br><br>
+  <a href="downloads/gradient_editor.app.zip" target="_blank">OS X</a><br><br>
+  <a href="downloads/gradient_editor.love" target="_blank">Linux</a>
+   &nbsp - Linux users will need to install the LOVE package 
+   (<a href="http://love2d.org">http://love2d.org</a>)<br><br><br>
+  
+  <b>Source: </b><a href="https://github.com/rlguy/gradient_editor">https://github.com/rlguy/gradient_editor</a>
+  
+   
+  <div class="blank">
+  </div>
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-73726729-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

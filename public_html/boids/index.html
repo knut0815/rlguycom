@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700&subset=latin,greek-ext" 
+          rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../css/basic.css">
+
+	<title>Boids | Ryan Guy's Portfolio</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+
+<body>
+
+  <div class="front_page_column">
+    <div class="header">
+          <div class="header_name">
+              RLGUY
+          </div>
+
+          <div class="header_links">
+              <ul>
+                  <li class="header_link"><a class="header_link" href="../index.html">Home</a> </li>
+                  <li class="header_link"><a class="header_link" href="../portfolio/index.html">Portfolio</a></li> 
+                  <li class="header_link"><a class="header_link" href="../projects/index.html">Projects</a></li> 
+                  <!--<li class="header_link"><a class="header_link" href="../resume/index.html">Resume</a> </li>-->
+                  <li class="header_link"><a class="header_link" href="mailto:ryan.l.guy@gmail.com">Contact</a></li>
+              </ul>
+          </div>
+          <hr>
+
+          <div class="icon_links">
+              <ul>
+                  <li><a class="icon_github" href="https://github.com/rlguy" target="_blank"></a></li>
+                  <li><a class="icon_youtube" href="https://www.youtube.com/channel/UCUiHivn6dWFP4eb2kVcKDyw" target="_blank"></a></li>
+              </ul>
+          </div>
+      </div>
+      <br><br>
+  </div>
+
+  <div class="center_column">
+  <h1>Boid Flocking Behaviour</h1>
+  <p>This program is an implementation of a boid flocking behaviour simulation. 
+      Features include basic boid rules (alignment, cohesion, separation), obstacle 
+      avoidance, and food sources.</p>
+      
+  <p>The implementation is written in Lua and uses the LOVE framework 
+  (<a href="http://love2d.org">http://love2d.org</a>).</p>
+  
+  <h2>Video</h2>
+  
+  <p>The following video is an animation created from the program.</p>
+  
+  <iframe width="800" height="450" 
+    src="http://www.youtube.com/embed/g0LwS4ysGbE" frameborder="0" allowfullscreen>
+  </iframe><br><br>
+  
+  <h2>Screenshots</h2>
+  
+  <p>The following screenshots are from the Boids demo program. The program is set up 
+  as a powerpoint style presentation interspersed with interactive demos.</p>
+
+  <div class="gallery">
+      <div class="gallery-left">
+        <a href="images/01-big.png" target="_blank">
+          <img src="images/01.jpg" alt="Basic flocking behaviour"/>
+        </a>
+        <p class="caption"><i>Basic flocking behaviour</i></p>
+      </div>
+
+      <div class="gallery-right">
+        <a href="images/04-big.png" target="_blank">
+          <img src="images/04.jpg" alt="A boid's local flockmates"/>
+        </a>
+        <p class="caption"><i>A boid's local flockmates</i></p>
+      </div>
+  </div>
+  <div class="gallery">
+      <div class="gallery-left">
+        <a href="images/06-big.png" target="_blank">
+          <img src="images/06.jpg" alt="Fixed grid spatial partition"/>
+        </a>
+        <p class="caption"><i>Fixed grid spatial partition</i></p>
+      </div>
+
+      <div class="gallery-right">
+        <a href="images/12-big.png" target="_blank">
+          <img src="images/12.jpg" alt="Flocking rules"/>
+        </a>
+        <p class="caption"><i>Flocking rules</i></p>
+      </div>
+  </div>
+  <div class="gallery">
+      <div class="gallery-left">
+        <a href="images/19-big.png" target="_blank">
+          <img src="images/19.jpg" alt="Obstacle avoidance"/>
+        </a>
+        <p class="caption"><i>Obstacle avoidance</i></p>
+      </div>
+
+      <div class="gallery-right">
+        <a href="images/22-big.png" target="_blank">
+          <img src="images/22.jpg" alt="Depleting food resources"/>
+        </a>
+        <p class="caption"><i>Depleting food resources</i></p>
+      </div>
+  </div>
+  
+  <h2>Controls</h2>
+  <p>Most of the controls are explained within the demo. Controls not mentioned are listed below:</p>
+  
+  <table>
+    <tr>
+      <td><b>Move camera</b></td><td>WASD or arrow keys</td>
+    </tr>
+    <tr>
+      <td><b>Set waypoint</b></td><td>Select boids with left mouse button, and right click to set a waypoint</td>
+    </tr>
+    <tr>
+      <td><b>Camera tracking</b></td><td>Select a boid with left mouse button to lock camera on boid</td>
+    </tr>
+    <tr>
+      <td><b>Change size of obstacles/food&nbsp;&nbsp;&nbsp;&nbsp;</b></td><td>Mouse scroll wheel</td>
+    </tr>
+    <tr>
+      <td><b>Display framerate</b></td><td>Tilde key</td>
+    </tr>
+    <tr>
+      <td><b>Go to previous slide<b></b></td><td>Backspace key</td>
+    </tr>
+    <tr>
+      <td><b>Exit program</b></td><td>Escape key</td>
+    </tr>
+  </table>
+  
+  <h2>Downloads</h2>
+  
+  <a href="files/boids-x86.zip" target="_blank">Windows 32-bit</a><br><br>
+  <a href="files/boids.app.zip" target="_blank">OS X</a><br><br>
+  <a href="files/boids.love" target="_blank">Linux</a>
+   &nbsp - Linux users will need to install the LOVE package 
+   (<a href="http://love2d.org">http://love2d.org</a>)<br><br><br>
+   
+  
+  <b>Source: </b><a href="https://github.com/rlguy/boids">https://github.com/rlguy/boids</a>
+  </div>
+  
+  <div class="blank">
+  </div>
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-73726729-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+</body>
+</html>
