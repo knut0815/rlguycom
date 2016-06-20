@@ -65,11 +65,10 @@
     
     <h2>Introduction</h2>
     
-    <p>This program is an implementation of a PIC/FLIP liquid fluid simulation 
-      written in C++11 based on methods described in Robert Bridson's "Fluid 
-      Simulation for Computer Graphics" textbook. The fluid simulation program 
-      outputs the surface of the fluid as a sequence of triangle meshes stored 
-      in the Stanford .PLY file format which can then be imported into your 
+    <p>This program is an implementation of a PIC/FLIP liquid fluid simulation written in C++11 
+      based on methods described in Robert Bridson's "Fluid Simulation for Computer Graphics" 
+      textbook. The fluid simulation program outputs the surface of the fluid as a sequence of 
+      triangle meshes stored in the Stanford .PLY file format which can then be imported into your 
       renderer of choice.
     </p>
 
@@ -96,7 +95,7 @@
     <ol>
       <li>OpenCL headers (can be found at 
           <a href="https://www.khronos.org/registry/cl/">khronos.org</a>)</li>
-      <li>An OpenCL SDK specific to your GPU vender (AMD, NVIDIA, Intel, etc.)</li>
+      <li>An OpenCL SDK specific to your GPU vendor (AMD, NVIDIA, Intel, etc.)</li>
       <li>A compiler that supports C++11</li>
     </ol>
 
@@ -196,19 +195,21 @@
        The default simulation will drop a ball of fluid in the center of the simulation domain. Example 
        configurations are located in the 
        <a href="https://github.com/rlguy/GridFluidSim3D/tree/master/src/examples">src/examples/</a> 
-       directory. Some documentation on the public methods for the FluidSimulation class is provided in the 
-       <a href="https://github.com/rlguy/GridFluidSim3D/blob/master/src/fluidsimulation.h">fluidsimulation.h</a> header.</p>
+       directory. Some documentation on the public methods for the FluidSimulation class is provided 
+       in the <a href="https://github.com/rlguy/GridFluidSim3D/blob/master/src/fluidsimulation.h">
+       fluidsimulation.h</a> header.</p>
 
     <h3>Hello World</h3>
 
-    <p>This is a very basic example of how to use the FluidSimulation class to run a simulation. 
-       The simulation in this example will drop a ball of fluid in the center of a cube shaped fluid 
+    <p>This is a very basic example of how to use the FluidSimulation class to run a simulation. The 
+       simulation in this example will drop a ball of fluid in the center of a cube shaped fluid 
        domain. This example is relatively quick to compute and can be used to test if the simulation 
        program is running correctly.</p>
 
     <p>The fluid simulator performs its computations on a 3D grid, and because of this the simulation 
-       domain is shaped like a rectangular prism. The FluidSimulation class can be initialized with four 
-       parameters: the number of grid cells in each direction x, y, and z, and the width of a grid cell.</p>
+       domain is shaped like a rectangular prism. The FluidSimulation class can be initialized with 
+       four parameters: the number of grid cells in each direction \(x\), \(y\), and \(z\), and the 
+       width of a grid cell.</p>
 
 <pre><code class="language-cpp">int xsize = 32;
 int ysize = 32;
@@ -218,18 +219,18 @@ FluidSimulation fluidsim(xsize, ysize, zsize, cellsize);
 </code></pre>
 
     <p>We want to add a ball of fluid to the center of the fluid domain, so we will need to get the 
-      dimensions of the domain by calling <code class="inline">getSimulationDimensions</code> and passing 
-      it pointers to store the width, height, and depth values. Alternatively, the dimensions can be 
-      calculated by multiplying the cell width by the corresponding number of cells in a direction 
-      (e.g. <code class="inline">width = dx*xsize</code>).</p>
+      dimensions of the domain by calling <code class="inlinered">getSimulationDimensions</code> and 
+      passing it pointers to store the width, height, and depth values. Alternatively, the 
+      dimensions can be calculated by multiplying the cell width by the corresponding number of 
+      cells in a direction (e.g. <code class="inlineblack">width = dx*xsize</code>).</p>
 
 <pre><code class="language-cpp">double width, height, depth;
 fluidsim.getSimulationDimensions(&width, &height, &depth);
 </code></pre>
 
     <p>Now that we have the dimensions of the simulation domain, we can calculate the center, and 
-      add a ball of fluid by calling <code class="inline">addImplicitFluidPoint</code> which takes 
-      the x, y, and z position and radius as parameters.</p>
+       add a ball of fluid by calling <code class="inlinered">addImplicitFluidPoint</code> which takes 
+       the \(x\), \(y\), and \(z\) position and radius as parameters.</p>
 
 <pre><code class="language-cpp">double centerx = width / 2;
 double centery = height / 2;
@@ -238,23 +239,21 @@ double radius = 6.0;
 fluidsim.addImplicitFluidPoint(centerx, centery, centerz, radius);
 </code></pre>
 
-    <p>An important note to make about <code class="inline">addImplicitFluidPoint</code> is 
-       that it will not add a sphere with the specified radius, it will add a sphere with half 
-       of the specified radius. An implicit fluid point is represented as a field of values on 
-       the simulation grid. The strength of the field values are <code class="inline">1</code> 
-       at the point center and falls off towards <code class="inline">0</code> as distance from 
-       the point increases. When the simulation is initialized, fluid particles will be created 
-       in regions where the field values are greater than <code class="inline">0.5</code>. This 
-       means that if you add a fluid point with a radius of <code class="inline">6.0</code>, the 
-       ball of fluid in the simulation will actually be of radius <code class="inline">3.0</code> 
-       since field values will be less than <code class="inline">0.5</code> at a distance greater 
-       than half of the specified radius.</p>
+    <p>An important note to make about <code class="inlinered">addImplicitFluidPoint</code> is that it 
+       will not add a sphere with the specified radius, it will add a sphere with half of the 
+       specified radius. An implicit fluid point is represented as a field of values on the 
+       simulation grid. The strength of the field values are 1 at the point center and falls off 
+       towards 0 as distance from the point increases. When the simulation is initialized, fluid 
+       particles will be created in regions where the field values are greater than 0.5. This means 
+       that if you add a fluid point with a radius of 6.0, the ball of fluid in the simulation will 
+       actually be of radius 3.0 since field values will be less than 0.5 at a distance greater than 
+       half of the specified radius.</p>
 
     <p>The FluidSimulation object now has a domain containing some fluid, but the current simulation 
-       will not be very interesting as there are no forces acting upon the fluid. We can add the force 
-       of gravity by making a call to <code class="inline">addBodyForce</code> which takes three values 
-       representing a force vector as parameters. We will set the force of gravity to point downwards 
-       with a value of <code class="inline">25.0</code>.</p>
+       will not be very interesting as there are no forces acting upon the fluid. We can add the 
+       force of gravity by making a call to <code class="inlinered">addBodyForce</code> which takes 
+       three values representing a force vector as parameters. We will set the force of gravity to 
+       point downwards with a value of 25.0.</p>
 
 <pre><code class="language-cpp">double gx = 0.0;
 double gy = -25.0;
@@ -262,22 +261,22 @@ double gz = 0.0;
 fluidsim.addBodyForce(gx, gy, gz);
 </code></pre>
 
-    <p>Now we have a simulation domain with some fluid, and a force acting on the fluid. Before we run 
-      the simulation, a call to <code class="inline">initialize</code> must be made. Note that any calls 
-      to <code class="inline">addImplicitFluidPoint</code> must be made before 
-      <code class="inline">initialize</code> is called.</p>
+    <p>Now we have a simulation domain with some fluid, and a force acting on the fluid. Before we 
+       run the simulation, a call to <code class="inlinered">initialize</code> must be made. Note that 
+       any calls to <code class="inlinered">addImplicitFluidPoint</code> must be made before 
+       <code class="inlinered">initialize</code> is called.</p>
 
 <pre><code class="language-cpp">fluidsim.initialize();</code></pre>
 
-    <p>We will now run the simulation for a total of 30 animation frames at a rate of 30 frames per second 
-       by repeatedly making calls to the <code class="inline">update</code> function. The 
-       <code class="inline">update</code> function advances the state of the simulation by a specified 
-       period of time. To update the simulation at a rate of 30 frames per second, each call to update will 
-       need to be supplied with a time value of <code class="inline">1.0/30.0</code>. Each call to 
-       <code class="inline">update</code> will generate a triangle mesh that represents the fluid surface. 
-       The mesh files will be saved in the 
-       <a href="https://github.com/rlguy/GridFluidSim3D/tree/master/bakefiles">bakefiles</a> directory as a 
-       numbered sequence of files stored in the Stanford .PLY file format.</p>
+    <p>We will now run the simulation for a total of 30 animation frames at a rate of 30 frames per 
+       second by repeatedly making calls to the <code class="inlinered">update</code> function. The 
+       <code class="inlinered">update</code> function advances the state of the simulation by a 
+       specified period of time. To update the simulation at a rate of 30 frames per second, each 
+       call to update will need to be supplied with a time value of 1.0/30.0. Each call to 
+       <code class="inlinered">update</code> will generate a triangle mesh that represents the fluid 
+       surface. The mesh files will be saved in the 
+       <a href="https://github.com/rlguy/GridFluidSim3D/tree/master/bakefiles">bakefiles</a> 
+       directory as a numbered sequence of files stored in the Stanford .PLY file format.</p>
 
 <pre><code class="language-cpp">double timestep = 1.0 / 30.0;
 int numframes = 30;
@@ -286,29 +285,32 @@ for (int i = 0; i < numframes; i++) {
 }
 </code></pre>
 
-    <p>As this loop runs, the program should output simulation stats and timing metrics to the terminal. After 
-       the loop completes, the <a href="https://github.com/rlguy/GridFluidSim3D/tree/master/bakefiles">bakefiles</a> 
+    <p>As this loop runs, the program should output simulation stats and timing metrics to the 
+       terminal. After the loop completes, the 
+       <a href="https://github.com/rlguy/GridFluidSim3D/tree/master/bakefiles">bakefiles</a> 
        directory should contain 30 .PLY triangle meshes numbered in sequence from 0 to 29: 
-       <code class="inline">000000.ply, 000001.ply, 000002.ply, ..., 000028.ply, 000029.ply</code>.</p>
+       <code class="inlineblack">
+         000000.ply, 000001.ply, 000002.ply, ..., 000028.ply, 000029.ply
+       </code>.</p>
 
-    <p>If you open the <code class="inline">000029.ply</code> mesh file in a 3D modelling package such as 
-       <a href="http://www.blender.org">Blender</a>, 
-       the mesh should look similar to the following image.</p>
+    <p>If you open the <code class="inlineblack">000029.ply</code> mesh file in a 3D modelling 
+       package such as <a href="http://www.blender.org">Blender</a>, the mesh should look similar to 
+       the following image.</p>
 
     <center><a href="images/hello_world_frame30.jpg"><img src="images/hello_world_frame30-small.jpg"></a>
     <p class="caption"><i>Frame 30 of the Hello World example</i></p></center>
 
-    <p>The fluid simulation in this example is quick to compute, but of low quality due to the low resolution of the 
-       simulation grid. The quality of this simulation can be improved by increasing the simulation dimensions while 
-       decreasing the cell size. For example, try simulating on a grid of resolution 
-       <code class="inline">64 x 64 x 64</code> with a cell size of <code class="inline">0.125</code>, or even better, 
-       on a grid of resolution <code class="inline">128 x 128 x 128</code> with a cell size of 
-       <code class="inline">0.0625</code>.</p>
+    <p>The fluid simulation in this example is quick to compute, but of low quality due to the low 
+       resolution of the simulation grid. The quality of this simulation can be improved by 
+       increasing the simulation dimensions while decreasing the cell size. For example, try 
+       simulating on a grid of resolution \(64 {\times} 64 {\times} 64\) with a cell size of 
+       \(0.125\), or even better, on a grid of resolution \(128 {\times} 128 {\times} 128\) with a 
+       cell size of \(0.0625\).</p>
     
     <h2>Program Output</h2>
 
-    <p>In general, the simulation program will output an animation as a numbered sequence 
-       of triangle meshes with each mesh representing the fluid surface at a point in time 
+    <p>In general, the simulation program will output an animation as a numbered sequence of 
+       triangle meshes with each mesh representing the fluid surface at a point in time 
        corresponding to the start of a frame. Some features of the program, when enabled, will 
        output additional files such as colour data or vertex meshes representing a set of 
        particles.</p>
@@ -321,15 +323,15 @@ for (int i = 0; i < numframes; i++) {
     <p>The program writes triangle meshes in the 
        <a href="http://paulbourke.net/dataformats/ply/">Stanford .PLY File Format</a>. The .PLY
        file format was chosen because it is lightweight, simple to implement, and easy to 
-       understand. A .PLY file generated by this program is composed of three parts: 
-       a header, a list of vertices, and a list of faces.</p>
+       understand. A .PLY file generated by this program is composed of three parts: a header, a 
+       list of vertices, and a list of faces.</p>
 
-    <p>The header is a series of plaintext lines terminated by a 
-       newline character (<code class="inline">'\n'</code>) that describe the format of the file, 
-       vertices, and faces. The following header decribes a binary .PLY file that contains four 3D 
-       vertices and two faces.</p> 
+    <p>The header is a series of plaintext lines terminated by a newline character 
+       (<code class="inlinered">'\n'</code>) that describe the format of the file, vertices, and faces. 
+       The following header describes a binary .PLY file that contains four 3D vertices and two 
+       faces.</p> 
 
-    <pre><code class="language-makefile">ply
+<pre><code class="language-makefile">ply
 format binary_little_endian 1.0
 element vertex 4
 property float x
@@ -340,33 +342,37 @@ property list uchar int vertex_index
 end_header</code></pre>
 
 
-    <p>The vertex list directly follows the <code class="inline">end_header</code> line. In the above header, 
-       a vertex element is defined as three floats which represent the x, y, and z position coordinates.</p>
+    <p>The vertex list directly follows the <code class="inlinered">end_header</code> line. In the 
+       above header, a vertex element is defined as three floats which represent the x, y, and z 
+       position coordinates.</p>
 
-    <p>The face list directly follows the vertex list. A face is made up of some number of vertices and references
-       individual vertices by an integer index into the previously defined vertex list. For example, the first vertex
-       in the list would be referenced by the integer <code class="inline">0</code>, the second by 
-       <code class="inline">1</code>, and so on. In the above header, a face element is defined as an unsigned
-       char which denotes the number of vertices that make up the face followed by a list of integer indices referencing 
-       the vertices. If the mesh is composed of only triangles, then the unsigned char value will be 
-       <code class="inline">0x3</code> for each face. The order of vertices referenced in a face is important. The .PLY
-       meshes generated by this program do not contain normals, so the left-hand rule convention of listing the vertices
-       in clockwise order will be used so that the direction of the faces can be derived from the vertex ordering.</p>
+    <p>The face list directly follows the vertex list. A face is made up of some number of vertices 
+       and references individual vertices by an integer index into the previously defined vertex 
+       list. For example, the first vertex in the list would be referenced by the integer 
+       <code class="inlinered">0</code>, the second by <code class="inlinered">1</code>, and so on. In the 
+       above header, a face element is defined as an unsigned char which denotes the number of 
+       vertices that make up the face followed by a list of integer indices referencing the 
+       vertices. If the mesh is composed of only triangles, then the unsigned char value will be 
+       <code class="inlinered">0x3</code> for each face. The order of vertices referenced in a face is 
+       important. The .PLY meshes generated by this program do not contain normals, so the left-hand 
+       rule convention of listing the vertices in clockwise order will be used so that the direction 
+       of the faces can be derived from the vertex ordering.</p>
 
     <h4>A Simple .PLY Example</h4>
 
-    <p>This simple .PLY example will demonstrate how the following diagram of a tetrahedron can be converted into a
-       .PLY mesh.</p>
+    <p>This simple .PLY example will demonstrate how the following diagram of a tetrahedron can be 
+       converted into a .PLY mesh.</p>
 
     <center><a href="images/simple_ply_example-large.png"><img src="images/simple_ply_example-small.png"></a></center>
   
-    <p>The above tetrahedron is made up of four vertices: \(v_0\), \(v_1\), \(v_2\),
-       and \(v_3\). The vertices can be arranged to create four triangles that make up the faces of the tetrahedron:
-       \(\Delta v_0v_2v_1\), \(\Delta v_0v_1v_3\), \(\Delta v_0v_3v_2\), and \(\Delta v_1v_2v_3\). By modifying the header
-       in the previous section to contain four vertices and four faces, and by listing the vertices and faces in this example,
-       we get the following .PLY file:</p>
+    <p>The above tetrahedron is made up of four vertices: \(v_0\), \(v_1\), \(v_2\), and \(v_3\). 
+       The vertices can be arranged to create four triangles that make up the faces of the 
+       tetrahedron: \(\Delta v_0v_2v_1\), \(\Delta v_0v_1v_3\), \(\Delta v_0v_3v_2\), and 
+       \(\Delta v_1v_2v_3\). By modifying the header in the previous section to contain four 
+       vertices and four faces, and by listing the vertices and faces in this example, we get the 
+       following .PLY file:</p>
 
-    <pre><code class="language-makefile">ply
+<pre><code class="language-makefile">ply
 format binary_little_endian 1.0
 element vertex 4
 property float x
@@ -385,20 +391,23 @@ end_header
 3 1 2 3
 </code></pre>
 
-  <p>Remember that the above .PLY format will be written as a binary file, so the header will be stored as chars, the
-     vertices will be stored as floats, the face vertex counts will be stored as unsigned chars, and the face vertex
-     references will be stored as ints. <a href="files/simple_ply_example-tetrahedron.ply">Download the binary .PLY
-     example here</a>.</p>
+  <p>Remember that the above .PLY format will be written as a binary file, so the header will be 
+     stored as chars, the vertices will be stored as floats, the face vertex counts will be stored 
+     as unsigned chars, and the face vertex references will be stored as ints. 
+     <a href="files/simple_ply_example-tetrahedron.ply">Download the binary .PLY example here</a>.
+  </p>
 
   <h3>Isotropic Surface Mesh Output</h3>
 
-  <p>Isotropic triangle meshes are the default form of program output. These triangle meshes represent the surface of
-     the fluid and are constructed by the fluid simulator from a set of spheres with uniform radius. The meshes 
-     are written to the <code class="inline">bakefiles/</code> directory as a sequence of .PLY files in the form
-     <code class="inline">000000.ply, 000001.ply, 000002.ply, ...</code>, where the file numbers correspond to the frame
-     number.</p>
+  <p>Isotropic triangle meshes are the default form of program output. These triangle meshes 
+     represent the surface of the fluid and are constructed by the fluid simulator from a set of 
+     spheres with uniform radius. The meshes are written to the 
+     <code class="inlineblack">bakefiles/</code> directory as a sequence of .PLY files in the form
+     <code class="inlineblack">000000.ply, 000001.ply, 000002.ply, ...</code>, where the file 
+     numbers correspond to the frame number.</p>
 
-  <p>This type of program output can be used by a renderer to generate renders the fluid surface.</p>
+  <p>This type of program output can be used by a renderer to generate renders the fluid surface.
+  </p>
 
   <br>
   <center><a href="images/mesh_render-large.jpg"><img src="images/mesh_render-small.jpg"></a>
@@ -407,35 +416,39 @@ end_header
 
   <h3>Anisotropic Surface Mesh Output</h3>
 
-  <p>Anisotropic triangle meshes represent the surface of the fluid and are similar to isotropic meshes except 
-     that the meshes are constructed from a set of ellipsoids instead of a set of spheres. The benefit of contructing
-     the surface from a set of ellipsoids rather than a set of spheres is that sharp/smooth features of the fluid surface 
-     are better preserved. This benefit comes at the cost of a longer surace mesh computation time.</p>
+  <p>Anisotropic triangle meshes represent the surface of the fluid and are similar to isotropic 
+     meshes except that the meshes are constructed from a set of ellipsoids instead of a set of 
+     spheres. The benefit of constructing the surface from a set of ellipsoids rather than a set of 
+     spheres is that sharp/smooth features of the fluid surface are better preserved. This benefit 
+     comes at the cost of a longer surface mesh computation time.</p>
 
-  <p>The anisotropic meshes are written to the <code class="inline">bakefiles/</code> directory as a sequence of .PLY files
-     prefixed with the keyword <code class="inline">anisotropic</code> in the form
-     <code class="inline">anisotropic000000.ply, anisotropic000001.ply, anisotropic000002.ply, ...</code>, where the file numbers 
-     correspond to the frame number.</p>
+  <p>The anisotropic meshes are written to the <code class="inlineblack">bakefiles/</code> directory 
+     as a sequence of .PLY files prefixed with the keyword 
+     <code class="inlineblack">anisotropic</code> in the form 
+     <code class="inlineblack">anisotropic000000.ply, anisotropic000001.ply, anisotropic000002.ply, 
+     ...</code>, where the file numbers correspond to the frame number.</p>
 
   <center><a href="images/isotropic_vs_anisotropic-large.jpg"><img src="images/isotropic_vs_anisotropic-small.jpg"></a>
-  <p class="caption"><i>Isotropic vs. anisotropic surface recontruction. Left: Isotropic. Right: Anisotropic.</i></p></center>
+  <p class="caption"><i>Isotropic vs. anisotropic surface reconstruction. Left: Isotropic. Right: Anisotropic.</i></p></center>
 
   <h3>Diffuse Particle Output</h3>
 
-  <p>The diffuse particle feature is a post-processing simulation run ontop of the PIC/FLIP fluid simulation that generates
-     spray, bubble, and foam particles. These diffuse particles can be combined with a surface mesh in a render
-     to give the fluid highly detailed small-scale aeration effects. The diffuse particles are stored as vertex only
-     .PlY meshes where each vertex represents a single diffuse particle.</p>
+  <p>The diffuse particle feature is a post-processing simulation run ontop of the PIC/FLIP fluid 
+     simulation that generates spray, bubble, and foam particles. These diffuse particles can be 
+     combined with a surface mesh in a render to give the fluid highly detailed small-scale aeration 
+     effects. The diffuse particles are stored as vertex only .PlY meshes where each vertex 
+     represents a single diffuse particle.</p>
 
-  <p>The diffuse particle meshes are written to the <code class="inline">bakefiles/</code> directory as a sequence of .PLY files
-     prefixed with the keyword <code class="inline">diffuse</code> in the form
-     <code class="inline">diffuse000000.ply, diffuse000001.ply, diffuse000002.ply, ...</code>, where the file numbers 
-     correspond to the frame number.</p>
+  <p>The diffuse particle meshes are written to the <code class="inlineblack">bakefiles/</code> 
+     directory as a sequence of .PLY files prefixed with the keyword 
+     <code class="inlineblack">diffuse</code> in the form
+     <code class="inlineblack">diffuse000000.ply, diffuse000001.ply, diffuse000002.ply, ...</code>, 
+     where the file numbers correspond to the frame number.</p>
 
-  <p>The simulation program can be configured to sort the diffuse particles by type (spray, foam, or bubble) and write the output 
-     into multiple files per frame. In this case, the files will be written in the form 
-     <code class="inline">bubble000000.ply, foam000000.ply, spray000000.ply, 
-                          bubble000001.ply, foam000001.ply, spray000001.ply, ...</code>.</p>
+  <p>The simulation program can be configured to sort the diffuse particles by type (spray, foam, or 
+     bubble) and write the output into multiple files per frame. In this case, the files will be 
+     written in the form <code class="inlineblack">bubble000000.ply, foam000000.ply, 
+     spray000000.ply, bubble000001.ply, foam000001.ply, spray000001.ply, ...</code>.</p>
   
   <br>
   <center><a href="images/diffuse_output-large.jpg"><img src="images/diffuse_output-small.jpg"></a>
@@ -443,13 +456,15 @@ end_header
 
   <h3>LEGO Brick Output</h3>
 
-  <p>LEGO brick output reconstructs the fluid surface as a set of coloured LEGO bricks. This simulation feature outputs
-     multiple files for each frame that representing LEGO brick locations and multiple formats for representing brick 
-     colours. The colour of a brick is a 1-dimensional value on a range of low density to high density.</p>
+  <p>LEGO brick output reconstructs the fluid surface as a set of coloured LEGO bricks. This 
+     simulation feature outputs multiple files for each frame that representing LEGO brick locations 
+     and multiple formats for representing brick colours. The colour of a brick is a 1-dimensional 
+     value on a range of low density to high density.</p>
 
-  <p>The colour value of a brick is meant to be used as an input into a gradient within a renderer or shader. For 
-     example, a gradient that maps low colour values to white and high colour values to blue can give the illusion 
-     of aerated white-water for areas where bricks have a lower density.</p>
+  <p>The colour value of a brick is meant to be used as an input into a gradient within a renderer 
+     or shader. For example, a gradient that maps low colour values to white and high colour values 
+     to blue can give the illusion of aerated white-water for areas where bricks have a lower 
+     density.</p>
 
   <br>
   <center><a href="images/isotropic_vs_brick-large.jpg"><img src="images/isotropic_vs_brick-small.jpg"></a>
@@ -457,21 +472,24 @@ end_header
 
   <h4>Brick Location Meshes</h4>
 
-  <p>Brick locations are written as .PLY meshes that contain only vertices where each vertex corresponds to the center
-     location of a brick. These vertex only meshes can be imported into a renderer where a model, such as the model of
-     a LEGO brick can be duplicated over each vertex location prior to rendering.</p>
+  <p>Brick locations are written as .PLY meshes that contain only vertices where each vertex 
+     corresponds to the center location of a brick. These vertex only meshes can be imported into a 
+     renderer where a model, such as the model of a LEGO brick can be duplicated over each vertex 
+     location prior to rendering.</p>
 
-  <p>The brick location meshes are written to the <code class="inline">bakefiles/</code> directory as a sequence of .PLY files
-     prefixed with the keyword <code class="inline">brick</code> in the form
-     <code class="inline">brick000000.ply, brick000001.ply, brick000002.ply, ...</code>, where the file numbers 
-     correspond to the frame number.</p>
+  <p>The brick location meshes are written to the <code class="inlineblack">bakefiles/</code> 
+     directory as a sequence of .PLY files prefixed with the keyword 
+     <code class="inlineblack">brick</code> in the form <code class="inlineblack">brick000000.ply, 
+     brick000001.ply, brick000002.ply, ...</code>, where the file numbers correspond to the frame 
+     number.</p>
 
-  <p>The vertices in the .PLY meshes generated by this feature contain vertex color data in addition to position data.
-     To modify the .PLY header described in previous sections to contain vertex colours, the red, green, and blue
-     unsigned char properties are added to the vertex definition. The following example .PLY mesh contains three vertices 
-     coloured red, green, and blue respectively.</p>
+  <p>The vertices in the .PLY meshes generated by this feature contain vertex color data in addition 
+     to position data. To modify the .PLY header described in previous sections to contain vertex 
+     colours, the red, green, and blue unsigned char properties are added to the vertex definition. 
+     The following example .PLY mesh contains three vertices coloured red, green, and blue 
+     respectively.</p>
 
-    <pre><code class="language-makefile">ply
+<pre><code class="language-makefile">ply
 format binary_little_endian 1.0
 element vertex 3
 property float x
@@ -488,86 +506,95 @@ end_header
 1 2 1 0 0 255
 </code></pre>
 
-  <p>Note that the red, green, and blue channels are stored as unsigned chars while the vertex positions are stored
-     as floats. <a href="files/vertex_color_example.ply">Download the binary .PLY example here</a></p>
+  <p>Note that the red, green, and blue channels are stored as unsigned chars while the vertex 
+     positions are stored as floats. <a href="files/vertex_color_example.ply">Download the binary 
+     .PLY example here</a></p>
 
-  <p>Since the brick colour values are 1-dimensional, each RGB channel will have the same value and be on a range from
-     <code class="inline">0</code> to <code class="inline">255</code> inclusive 
-     (<code class="inline">0x00</code> to <code class="inline">0xFF</code>).</p>
+  <p>Since the brick colour values are 1-dimensional, each RGB channel will have the same value and 
+     be on a range from <code class="inlinered">0</code> to <code class="inlinered">255</code> inclusive 
+     (<code class="inlinered">0x00</code> to <code class="inlinered">0xFF</code>).</p>
 
-  <p>Not all renderers have the functionality to read vertex colours in this format. The next two sections will 
-     discuss the alternative formats that colour data is written in.</p>
+  <p>Not all renderers have the functionality to read vertex colours in this format. The next two 
+     sections will discuss the alternative formats that colour data is written in.</p>
 
   <h4>Brick Colour List Data</h4>
 
-  <p>The program also outputs brick colours as a binary data file. These files can be read by a scripting language within
-     a renderer to retrieve colour information.</p> 
+  <p>The program also outputs brick colours as a binary data file. These files can be read by a 
+     scripting language within a renderer to retrieve colour information.</p> 
 
-  <p>The brick colour list data files are written to the <code class="inline">bakefiles/</code> directory as a sequence of .data files
-     prefixed with the keyword <code class="inline">brickcolor</code> in the form
-     <code class="inline">brickcolor000000.data, brickcolor000001.data, brickcolor000002.data, ...</code>, where the file numbers 
-     correspond to the frame number.</p>
+  <p>The brick colour list data files are written to the <code class="inlineblack">bakefiles/</code> 
+     directory as a sequence of .data files prefixed with the keyword 
+     <code class="inlineblack">brickcolor</code> in the form 
+     <code class="inlineblack">brickcolor000000.data, brickcolor000001.data, brickcolor000002.data, 
+     ...</code>, where the file numbers correspond to the frame number.</p>
 
-  <p>Brick colours are stored in the data file as red, green, and blue unsigned char values 
-     listed in the same order as the vertices in the brick location .PLY file. For example, if \(b_i\) is the \(i^{th}\) brick
-     location in the brick mesh, and \(\text{brickcolors}\) is the color list .data file indexed as an array of unsigned chars, 
-     then the colours \(R_i\), \(B_i\), and \(G_i\) can be found in the following manner:</p>
+  <p>Brick colours are stored in the data file as red, green, and blue unsigned char values listed 
+     in the same order as the vertices in the brick location .PLY file. For example, if \(b_i\) is 
+     the \(i^{th}\) brick location in the brick mesh, and \(\text{brickcolors}\) is the color list 
+     .data file indexed as an array of unsigned chars, then the colours \(R_i\), \(B_i\), and 
+     \(G_i\) can be found in the following manner:</p>
 
-      $$ {\large
-            \begin{align} 
-              R_i = &\ \text{brickcolors}[3i] \\ 
-              G_i = &\ \text{brickcolors}[3i + 1] \\ 
-              B_i = &\ \text{brickcolors}[3i + 2] 
-            \end{align} 
-          } $$
+  $$ {\large
+    \begin{align} 
+      R_i = &\ \text{brickcolors}[3i] \\ 
+      G_i = &\ \text{brickcolors}[3i + 1] \\ 
+      B_i = &\ \text{brickcolors}[3i + 2] 
+    \end{align} 
+  } $$
 
-  <p>Since the brick colour values are 1-dimensional, each RGB channel will have the same value and be on a range from
-     <code class="inline">0</code> to <code class="inline">255</code> inclusive 
-     (<code class="inline">0x00</code> to <code class="inline">0xFF</code>).</p>
+  <p>Since the brick colour values are 1-dimensional, each RGB channel will have the same value and 
+     be on a range from <code class="inlinered">0</code> to <code class="inlinered">255</code> inclusive 
+     (<code class="inlinered">0x00</code> to <code class="inlinered">0xFF</code>).</p>
 
-  <p>Not all renderers may preserve the vertex order after importing the .PLY brick location mesh. If vertex order is not preserved,
-     then the colour information will not beable to be recovered from the brick colour list data file. The next section will discuss
-     a data format where vertex ordering is not required to be preserved and where colour information can be derived from a brick vertex 
-     location.</p>
+  <p>Not all renderers may preserve the vertex order after importing the .PLY brick location mesh. 
+     If vertex order is not preserved, then the colour information will not beable to be recovered 
+     from the brick colour list data file. The next section will discuss a data format where vertex 
+     ordering is not required to be preserved and where colour information can be derived from a 
+     brick vertex location.</p>
 
   <h4>Brick Texture Data</h4>
 
-  <p>This form of colour output stores brick colour information as a flattened 3D array of unsigned chars. These files can be read
-     by a scripting language within a renderer or can be converted into a 2D image texture which can then be used as a colour look-up
-     table by a shader.</p> 
+  <p>This form of colour output stores brick colour information as a flattened 3D array of unsigned 
+     chars. These files can be read by a scripting language within a renderer or can be converted 
+     into a 2D image texture which can then be used as a colour look-up table by a shader.</p> 
 
-  <p>The brick colour texture data files are written to the <code class="inline">bakefiles/</code> directory as a sequence of .data files
-     prefixed with the keyword <code class="inline">bricktexture</code> in the form
-     <code class="inline">bricktexture000000.data, bricktexture000001.data, bricktexture000002.data, ...</code>, where the file numbers 
-     correspond to the frame number.</p>
+  <p>The brick colour texture data files are written to the 
+     <code class="inlineblack">bakefiles/</code> directory as a sequence of .data files prefixed 
+     with the keyword <code class="inlineblack">bricktexture</code> in the form
+     <code class="inlineblack">bricktexture000000.data, bricktexture000001.data, 
+     bricktexture000002.data, ...</code>, where the file numbers correspond to the frame number.</p>
 
-  <p>In the simulation program,
-     brick locations are aligned to a 3D grid of dimensions \(N \times M \times P\). If the simulation domain width, height, and depth
-     dimensions are \(W \times H \times D\) respectively, and the width, height, and depth dimensions of a brick are 
-     \(w \times h \times d\) respectively, then:</p>
+  <p>In the simulation program, brick locations are aligned to a 3D grid of dimensions 
+     \(N {\times} M {\times} P\). If the simulation domain width, height, and depth dimensions are 
+     \(W {\times} H {\times} D\) respectively, and the width, height, and depth dimensions of a 
+     brick are \(w {\times} h {\times} d\) respectively, then:</p>
 
-     $$ {\large N = \Bigl \lceil \frac{W}{w} \Bigr \rceil, \quad 
-                M = \Bigl \lceil \frac{H}{h} \Bigr \rceil, \quad
-                P = \Bigl \lceil \frac{D}{d} \Bigr \rceil 
-        } $$
+  $$ {\large 
+    N = \Bigl \lceil \frac{W}{w} \Bigr \rceil, \quad 
+    M = \Bigl \lceil \frac{H}{h} \Bigr \rceil, \quad
+    P = \Bigl \lceil \frac{D}{d} \Bigr \rceil 
+  } $$
 
-  <p>If a brick location vertex has a position of \(x\), \(y\), \(z\), then it's 3D grid index \(i\), \(j\), \(k\) can be computed as: <p>
+  <p>If a brick location vertex has a position of \(x\), \(y\), \(z\), then it's 3D grid index 
+     \(i\), \(j\), \(k\) can be computed as: <p>
 
-     $$ {\large i = \Bigl \lfloor \frac{x}{w} \Bigr \rfloor, \quad 
-                j = \Bigl \lfloor \frac{y}{h} \Bigr \rfloor, \quad
-                k = \Bigl \lfloor \frac{z}{d} \Bigr \rfloor 
-        } $$
+  $$ {\large 
+    i = \Bigl \lfloor \frac{x}{w} \Bigr \rfloor, \quad 
+    j = \Bigl \lfloor \frac{y}{h} \Bigr \rfloor, \quad
+    k = \Bigl \lfloor \frac{z}{d} \Bigr \rfloor 
+  } $$
 
-  <p>If brick \(b\) has a 3D grid index \(i\), \(j\), \(k\), and \(\text{bricktexture}\) is the color texture .data file indexed 
-     as an array of unsigned chars, then the colours \(R\), \(G\), and \(B\) can be found in the following manner:</p>
+  <p>If brick \(b\) has a 3D grid index \(i\), \(j\), \(k\), and \(\text{bricktexture}\) is the 
+     color texture .data file indexed as an array of unsigned chars, then the colours \(R\), \(G\), 
+     and \(B\) can be found in the following manner:</p>
 
-     $$ {\large R = G = B = \text{bricktexture}[i + jN + kNM ] } $$
+  $$ {\large R = G = B = \text{bricktexture}[i + jN + kNM ] } $$
 
-  <p>Since the brick colour values are 1-dimensional, each RGB channel will have the same value and be on a range from
-     <code class="inline">0</code> to <code class="inline">255</code> inclusive 
-     (<code class="inline">0x00</code> to <code class="inline">0xFF</code>). The brick texture .data files contain values
-     for each possible index of the 3D brick grid. The files will only contain valid data for grid indices derived from brick 
-     locations in the .PLY file.</p>
+  <p>Since the brick colour values are 1-dimensional, each RGB channel will have the same value and 
+     be on a range from <code class="inlinered">0</code> to <code class="inlinered">255</code> inclusive 
+     (<code class="inlinered">0x00</code> to <code class="inlinered">0xFF</code>). The brick texture .data 
+     files contain values for each possible index of the 3D brick grid. The files will only contain 
+     valid data for grid indices derived from brick locations in the .PLY file.</p>
 
   <h2>Implementation</h2>
 
@@ -575,73 +602,88 @@ end_header
 
   <h3>The Fluid Equations</h3>
 
-  <p>This simulation program animates fluids by approximating the <i>incompressible Navier-Stokes equations</i>:</p>
+  <p>This simulation program animates fluids by approximating the <i>incompressible Navier-Stokes 
+     equations</i>:</p>
 
-  $$ {  \large
-          \begin{align} 
-              \frac{D\vec{u}}{Dt} + \frac{1}{\rho}\nabla p = & \vec{g} + \nu \nabla \cdot \nabla \vec{u}, \\[1.5ex]
-              \nabla \cdot \vec{u} = & 0
-          \end{align}
+  $$ {\large
+    \begin{align} 
+      \frac{D\vec{u}}{Dt} + \frac{1}{\rho}\nabla p = & \vec{g} + \nu \nabla \cdot \nabla \vec{u}, \\[1.5ex]
+      \nabla \cdot \vec{u} = & 0
+    \end{align}
   } $$
 
-  <p>Where \(\vec{u}\) is velocity, \(\rho\) is the fluid density, \(p\) is pressure, \(\vec{g}\) denotes forces
-     acting on the fluid such as gravity, and \(\nu\) is the kinematic viscosity constant.</p>
+  <p>Where \(\vec{u}\) is velocity, \(\rho\) is the fluid density, \(p\) is pressure, \(\vec{g}\) 
+     denotes forces acting on the fluid such as gravity, and \(\nu\) is the kinematic viscosity 
+     constant.</p>
 
-  <p>This simulator does not implement viscosity in the fluid. If we set \(\nu = 0\), then we can drop the viscosity term 
-     and the equations become the <i>inviscid incompressible Navier-Stokes equations:</i></p>
+  <p>This simulator does not implement viscosity in the fluid. If we set \(\nu = 0\), then we can 
+     drop the viscosity term and the equations become the <i>inviscid incompressible Navier-Stokes 
+     equations:</i></p>
 
-  $$ {  \large
-          \begin{align} 
-              \frac{D\vec{u}}{Dt} + \frac{1}{\rho}\nabla p = & \vec{g}, \\[1.5ex]
-              \nabla \cdot \vec{u} = & 0
-          \end{align}
+  $$ {\large
+    \begin{align} 
+      \frac{D\vec{u}}{Dt} + \frac{1}{\rho}\nabla p = & \vec{g}, \\[1.5ex]
+      \nabla \cdot \vec{u} = & 0
+    \end{align}
   } $$
 
   <p>The \(D\vec{u} / Dt\) term is the velocity material derivative and is shorthand for 
-     \(\partial \vec{u} / \partial t + \vec{u} \cdot \nabla \vec{u}\). A material derivative is the time rate of change of
-     a quantity as it moves through a velocity field. The material derivative in this case can be confusing to understand since
-     the quantity being advected though the velocity field is the velocity field itself.</p>
+     \(\partial \vec{u} / \partial t + \vec{u} \cdot \nabla \vec{u}\). A material derivative is the 
+     time rate of change of a quantity as it moves through a velocity field. The material derivative 
+     in this case can be confusing to understand since the quantity being advected though the 
+     velocity field is the velocity field itself.</p>
 
-  <p>The second equation, \(\nabla \cdot \vec{u} = 0\), is the incompressibility condition which is what will make the fluid 
-     incompressible and preserve volume.</p>
+  <p>The second equation, \(\nabla \cdot \vec{u} = 0\), is the incompressibility condition which is 
+     what will make the fluid incompressible and preserve volume.</p>
 
   <h3>Solving the Fluid Equations</h3>
 
-  <p>The <i>inviscid incompressible Navier-Stokes equations</i> described in the previous section are too complex to accurately 
-     solve in a single step. The equations will be split up into simpler equations through the method of numerical splitting and each 
-     equation will be solved seperately and then added together to give an accurate approximation to the fluid equations. The fluid 
-     equations will be split into three parts: the advection equation (material derivative), the body forces equation (gravity), 
-     and the pressure equation under the contraint of the incompressibility condition.</p>
+  <p>The <i>inviscid incompressible Navier-Stokes equations</i> described in the previous section 
+     are too complex to accurately solve in a single step. The equations will be split up into 
+     simpler equations through the method of numerical splitting and each equation will be solved 
+     seperately and then added together to give an accurate approximation to the fluid equations. 
+     The fluid equations will be split into three parts: the advection equation (material 
+     derivative), the body forces equation (gravity), and the pressure equation under the constraint 
+     of the incompressibility condition.</p>
 
-   $$ {  \large
-        \begin{align} 
-            \frac{D\vec{u}}{Dt} & = 0, \\[1.5ex]
-            \frac{\partial \vec{u}}{\partial t} & = \vec{g}, \\[1.5ex]
-            \frac{\partial \vec{u}}{\partial t} & + \frac{1}{\rho}\nabla p = 0 \quad \textrm{such that} \quad \nabla \cdot \vec{u} = 0
-        \end{align}
+  $$ {\large
+    \begin{align} 
+      \frac{D\vec{u}}{Dt} & = 0, \\[1.5ex]
+      \frac{\partial \vec{u}}{\partial t} & = \vec{g}, \\[1.5ex]
+      \frac{\partial \vec{u}}{\partial t} & + \frac{1}{\rho}\nabla p = 0 \quad \textrm{such that} \quad \nabla \cdot \vec{u} = 0
+    \end{align}
   } $$
 
-  <p>The advantage of splitting the fluid equations is that there are very accurate numerical methods for approximating the above 
-     equations.</p>
+  <p>The advantage of splitting the fluid equations is that there are very accurate numerical 
+     methods for approximating the above equations.</p>
 
-  <p>The fluid simulation algorithm will approximate the fluid equations advancing the simulation state by a timestep 
-     \(\Delta t\). First, the velocity field will be initialized by solving the advection equation. Second, the body forces equation
-     will be solved  and added to the previously initialized velocity field. Lastly, the pressure equation will be solved in a way 
-     that when the pressure is applied to the velocity field, the fluid will become divergence-free (incompressible).</p>
+  <p>The fluid simulation algorithm will approximate the fluid equations advancing the simulation 
+     state by a timestep \(\Delta t\). First, the velocity field will be initialized by solving the 
+     advection equation. Second, the body forces equation will be solved  and added to the 
+     previously initialized velocity field. Lastly, the pressure equation will be solved in a way 
+     that when the pressure is applied to the velocity field, the fluid will become divergence-free 
+     (incompressible).</p>
 
   <h3>Notation and Conventions</h3>
 
   <p>[placeholder]</p>
 
-  <h4>3D Arrays</h4>
+  <h4>3D Arrays and Grid Indices</h4>
 
-  <p>3D multi-dimensional arrays are used to store data and computation results and are found throughout the program. 
-     To locate a 3D data value, the symbols \(i\), \(j\), and \(k\) will be used as index values in the \(x\), \(y\), 
-     and \(z\) directions respectively. A quantity \(q\) that is located at grid index \((i, j, k)\)
-     will use the subscript notation \(q_{i,\ j,\ k}\).</p> 
+  <p>3D multi-dimensional arrays are used to store data and computation results and are found 
+     throughout the program. To locate a 3D data value, the symbols \(i\), \(j\), and \(k\) will be 
+     used as index values in the \(x\), \(y\), and \(z\) directions respectively.</p>
 
-  <p>Unless otherwise stated, multi-dimensional arrays will be assumed to be stored in row-major order so that data will
-     be accessed sequentially in memory when a 3D array is iterated through in the following manner:</p>
+  <p>Notation will be needed to specify data quantities that are aligned to a grid. A quantity \(q\) 
+     that is located at grid index \((i, j, k)\) will use the subscript notation \(q_{i,\ j,\ k}\). 
+     Data may also be aligned to locations halfway between grid indices, and in this case we will 
+     use half-index notation in the quantity subscripts. For example, a quantity \(q\) that is 
+     located halfway between cells \((i, j, k)\) and \((i{+}1, j, k)\) will be notated as 
+     \(q_{i{+}1/2,\ j,\ k}\).</p> 
+
+  <p>Unless otherwise stated, multi-dimensional arrays will be assumed to be stored in row-major 
+     order so that data will be accessed sequentially in memory when a 3D array is iterated through 
+     in the following manner:</p>
 
 <pre><code class="language-cpp">for (int k = 0; k < ksize; k++) {
     for (int j = 0; j < jsize; j++) {
@@ -655,11 +697,268 @@ end_header
 
   <h4>3D Vectors</h4>
 
-  <p>In general, 3D position vectors will be denoted by the symbol \(\vec{x}\) with components \((x, y, z)\), and 3D 
-     velocity vectors will denoted by the symbol \(\vec{u}\) with components \((u, v, w)\).</p>
+  <p>In general, 3D position vectors will be denoted by the symbol \(\vec{x}\) with components 
+     \((x, y, z)\), and 3D velocity vectors will denoted by the symbol \(\vec{u}\) with components 
+     \((u, v, w)\).</p>
 
-  <p>This document will use the convention that the y-axis points vertically upwards and that the x-axis and z-axis
-     point horizontally.</p>
+  <p>This document will use the convention that the y-axis points vertically upwards and that the 
+     x-axis and z-axis point horizontally.</p>
+
+  <h3>Data Structures</h3>
+
+  <p>This section will detail important data structures used by the program. [placeholder]</p>
+
+  <h4>Array3d</h4>
+
+  <p>3D multi-dimensional arrays are used throughout the program to store gridded data. The 
+     <a href="https://github.com/rlguy/GridFluidSim3D/blob/master/src/array3d.h">Array3d</a> data 
+     structure is a template class that has functionality for manipulating data stored on a grid 
+     using 3D grid indices.</p>
+
+  <p>Internally, the gridded data is stored as a flat array of items. If the grid has dimensions 
+     \(w\), \(h\), and \(d\), and each item has a data size of \(n\) bytes, then the the Array3d 
+     data structure will allocate \(n \cdot w \cdot h \cdot d\) bytes of contiguous memory for 
+     storing the gridded data. If an item has a grid index of \((i, j, k)\), it will be stored in 
+     the flat array at index \(i + jw + kwh\).</p>
+
+  <h4>MAC Velocity Field</h4>
+
+  <p>The <a href="https://github.com/rlguy/GridFluidSim3D/blob/master/src/macvelocityfield.h">
+     marker-and-cell (MAC) velocity field</a> is a grid data structure where velocity components are 
+     staggered. The \((u, v, w)\) velocity components are not all located at grid cell centers, but 
+     are instead located on the centers of their respective grid cell faces. We will use the 
+     half-index notation discussed in the <i>Notation and Conventions</i> section of this document 
+     to describe the location of cell face centers. For example, the velocity component that is 
+     located halfway between cells \((i, j, k{-}1)\) and \((i, j, k)\) is the \(w\) component and is 
+     notated as \(w_{i,\ j,\ k{-}1/2}\). The following diagram displays how the \(u\), \(v\), and 
+     \(w\) velocity components are laid out on the MAC velocity field.</p>
+
+  <br>
+  <center><a href="images/mac_velocity_diagram-large.png"><img src="images/mac_velocity_diagram-small.png"></a>
+  <p class="caption"><i>MAC velocity field grid notation diagram.</i></p></center>
+
+  <p>The advantage of storing velocity components on cell faces rather than storing all components 
+     at grid cell centers is that the derivative of the velocity field at cell centers can be 
+     approximated very accurately. When velocity components are located on cell faces, the 
+     derivative located in the center of cell \(i, j, k\) can be approximated by central 
+     differencing:</p>
+
+  $$ { \large 
+    \begin{align}  
+      \left( \frac{\partial u}{\partial x} \right)_{i,\ j,\ k } \approx & \ 
+             \frac{u_{i{+}1/2,\ j,\ k} - u_{i{-}1/2,\ j,\ k}}{\Delta x}, \\[1.5ex]
+      \left( \frac{\partial v}{\partial y} \right)_{i,\ j,\ k } \approx & \ 
+             \frac{v_{i,\ j{+}1/2,\ k} - v_{i,\ j{-}1/2,\ k}}{\Delta x}, \\[1.5ex]
+      \left( \frac{\partial w}{\partial z} \right)_{i,\ j,\ k } \approx & \ 
+             \frac{w_{i,\ j,\ k{+}1/2} - w_{i,\ j,\ k{-}1/2}}{\Delta x}
+    \end{align}
+  } $$
+
+  <p>Where \(\Delta x\) is the width a grid cell. Accuracy will be needed when calculating velocity 
+     field derivatives during the pressure solve stage of the simulation.</p>
+
+  <p>The MAC velocity field stores each \(u\), \(v\), and \(w\) velocity component in memory as a 
+     seperate Array3d data structure. If the velocity field grid has dimensions 
+     \(N {\times} M {\times} P\), then the \(u\) grid will have dimensions 
+     \((N {+} 1) {\times} M {\times} P\), the \(v\) grid will have dimensions 
+     \(N {\times} (M {+} 1) {\times} P\), and the \(w\) grid will have dimensions 
+     \(N {\times} M {\times} (P {+} 1)\).</p>
+
+  <p>The half-index notation works well for describing velocity components in this document, but 
+     does not translate well into a programming implementation since arrays use integer only 
+     indexing. The following table demonstrates how half-index notation will be translated into 
+     classic array integer indexing:</p>
+
+  <center>
+    <table cellpadding="5">
+      <tr>
+        <th align="center" width="150px">Half Index<th>
+        <th>Integer Index</th>
+      </tr>
+      <tr>
+        <td align="center">\(\large u_{i{-}1/2,\ j,\ k}\)<td>
+        <td>\(\large \text{u}(i, j, k)\)</td>
+      </tr>
+      <tr>
+        <td align="center">\(\large u_{i{+}1/2,\ j,\ k}\)<td>
+        <td>\(\large \text{u}(i+1, j, k)\)</td>
+      </tr>
+      <tr>
+        <td align="center">\(\large v_{i,\ j{-}1/2,\ k}\)<td>
+        <td>\(\large \text{v}(i, j, k)\)</td>
+      </tr>
+      <tr>
+        <td align="center">\(\large v_{i,\ j{+}1/2,\ k}\)<td>
+        <td>\(\large \text{v}(i, j+1, k)\)</td>
+      </tr>
+      <tr>
+        <td align="center">\(\large w_{i,\ j,\ k{-}1/2}\)<td>
+        <td>\(\large \text{w}(i, j, k)\)</td>
+      </tr>
+      <tr>
+        <td align="center">\(\large w_{i,\ j,\ k{+}1/2}\)<td>
+        <td>\(\large \text{w}(i, j, k+1)\)</td>
+      </tr>
+    </table>
+  </center>
+
+  <h5>Evaluating Velocities on the Grid</h5>
+
+  <p>Evaluating velocities at location aligned to the grid is straight forward and involves simple
+     averaging of nearby component values. The following formulas will demonstrate how to calculate
+     velocities at points located on the center of grid cells and at points located on cell face
+      centers:</p>
+
+  $$ {
+    \begin{align}
+      \vec{u}_{i,\ j,\ k}\ = & \  \left( \frac{u_{i{-}1/2,\ j,\ k} + u_{i{+}1/2,\ j,\ k}}{2}, \ 
+                                         \frac{v_{i,\ j{-}1/2,\ k} + v_{i,\ j{+}1/2,\ k}}{2}, \ 
+                                         \frac{w_{i,\ j,\ k{-}1/2} + w_{i,\ j,\ k{+}1/2}}{2} 
+                                  \right) \\[1.5ex]
+
+      \vec{u}_{i{+}1/2,\ j,\ k}\ = & \  \left( u_{i{+}1/2,\ j,\ k}, \ 
+                                               \frac{
+                                                  \begin{align}
+                                                    v_{i,\ j{-}1/2,\ k} \ +& \ v_{i,\ j{+}1/2,\ k} \\\ + \ v_{i{+}1,\ j{-}1/2,\ k} \ +& \ v_{i{+}1,\ j{+}1/2,\ k}
+                                                  \end{align}}{4}, \ 
+                                               \frac{
+                                                  \begin{align}
+                                                    w_{i,\ j,\ k{-}1/2} \ +& \ w_{i,\ j,\ k{+}1/2} \\ \ + \ w_{i{+}1,\ j,\ k{-}1/2} \ +& \ w_{i{+}1,\ j,\ k{+}1/2}
+                                                  \end{align}}{4} 
+                                        \right) \\[1.5ex]
+
+      \vec{u}_{i,\ j{+}1/2,\ k}\ = & \  \left( \frac{
+                                                  \begin{align}
+                                                    u_{i{-}1/2,\ j,\ k} \ +& \ u_{i{+}1/2,\ j,\ k} \\ \ + \ u_{i{-}1/2,\ j{+}1,\ k} \ + & \  u_{i{+}1/2,\ j{+}1,\ k}
+                                                  \end{align}}{4}, \ 
+                                               v_{i,\ j{+}1/2,\ k}, \ 
+                                               \frac{
+                                                  \begin{align}
+                                                    w_{i,\ j,\ k{-}1/2} \ +& \ w_{i,\ j,\ k{+}1/2} \\ \ + \ w_{i,\ j{+}1,\ k{-}1/2} \ +& \ w_{i,\ j{+}1,\ k{-}1/2}
+                                                  \end{align}}{4}
+                                        \right) \\[1.5ex]
+
+      \vec{u}_{i,\ j,\ k{+}1/2}\ = & \  \left( \frac{
+                                                  \begin{align}
+                                                    u_{i{-}1/2,\ j,\ k} \ +& \ u_{i{+}1/2,\ j,\ k} \\ \ + \ u_{i{-}1/2,\ j,\ k{+}1} \ +& \ u_{i{+}1/2,\ j,\ k{+}1}
+                                                  \end{align}}{4}, \ 
+                                               \frac{
+                                                  \begin{align}
+                                                    v_{i,\ j{-}1/2,\ k} \ +& \ v_{i,\ j{+}1/2,\ k} \\ \ + \ v_{i,\ j{-}1/2,\ k{+}1} \ +& \ v_{i,\ j{+}1/2,\ k{+}1}
+                                                  \end{align}}{4}, \ 
+                                               w_{i,\ j,\ k{+}1/2}
+                                        \right) \\[1.5ex]
+
+    \end{align}
+  } $$
+
+  <h5>Evaluating Velocities off the Grid</h5>
+
+  <p>Evaluating velocities that are not aligned to grid locations will involve interpolating between 
+     nearby grid locations. We will use tricubic interpolation to evaluate values not aligned to the 
+     grid. A tricubic interpolation will involve weighting 64 points aligned to the vertices of a 
+     \(3{\times}3{\times}3\) grid of cubes where the point being evaluated is located inside the 
+     center cube. Since velocity components are staggered at different locations on the MAC velocity 
+     field, three seperate tricubic interpolations will need to be computed, one for each velocity 
+     component.</p>
+
+  <p>The inputs to the tricubic interpolation method will be a 3D array of dimension 
+     \(4{\times}4{\times}4\), and three values \(x, y, z \in [0, 1]\) that will define the location 
+     within the unit cube that is being interpolated. The \(x, y, z\) values will be located between 
+     the indices \((1, 1, 1)\) and \((2, 2, 2)\) in the 3D array of interpolation values.</p>
+
+  <p>The following <code class="inlinered">tricubicInterpolate</code> method was adapted from 
+     <a href="http://www.paulinternet.nl/?page=bicubic">Paul Bourke's Cubic Interpolation Page</a>.
+  </p>
+
+<pre><code class="language-cpp">double cubicInterpolate(double p[4], double x) {
+    return p[1] + 0.5 * x*(p[2] - p[0] + 
+                           x*(2.0*p[0] - 5.0*p[1] + 4.0*p[2] - p[3] + 
+                              x*(3.0*(p[1] - p[2]) + p[3] - p[0])));
+}
+
+double bicubicInterpolate(double p[4][4], double x, double y) {
+    double arr[4];
+    arr[0] = cubicInterpolate(p[0], x);
+    arr[1] = cubicInterpolate(p[1], x);
+    arr[2] = cubicInterpolate(p[2], x);
+    arr[3] = cubicInterpolate(p[3], x);
+    return cubicInterpolate(arr, y);
+}
+
+double tricubicInterpolate(double p[4][4][4], double x, double y, double z) {
+    double arr[4];
+    arr[0] = bicubicInterpolate(p[0], x, y);
+    arr[1] = bicubicInterpolate(p[1], x, y);
+    arr[2] = bicubicInterpolate(p[2], x, y);
+    arr[3] = bicubicInterpolate(p[3], x, y);
+    return cubicInterpolate(arr, z);
+}
+</code></pre>
+
+  <p>The above method computes a tricubic interpolation by first computing four bicubic 
+     interpolations on the \(xy\)-plane and taking a cubic interpolation of the resulting values 
+     along the \(z\)-axis. Each bicubic interpolation computes four cubic interpolations along the 
+     \(x\)-axis and takes an additional cubic interpolation of the resulting values along the 
+     \(y\)-axis. The following cubic spline function is used to compute the cubic interpolations:
+  </p>
+
+  $$ {
+    \begin{align}
+      f(p_0,\ p_1,\ p_2,\ p_3,\ x) = \ &(-\tfrac{1}{2}p_0 + \tfrac{3}{2}p_1 - \tfrac{3}{2}p_2 + \tfrac{1}{2}p_3)x^3 \\
+                                       &+ (p_0 - \tfrac{5}{2}p_1 + 2p_2 - \tfrac{1}{2}p_3)x^2 \\
+                                       &+ (-\tfrac{1}{2}p_0 + \tfrac{1}{2}p_2)x \\
+                                       &+ p_1
+    \end{align}
+  } $$
+
+    <p>The following methods demonstrate how the above tricubic interpolation method can be used 
+       with the MAC velocity field to compute a velocity at any location within the grid:</p>
+
+<pre><code class="language-cpp">double evaluateComponentVelocity(Vector3 position, 
+                                 Vector3 gridOffset, 
+                                 Array3d<float> grid) {
+    position -= gridOffset;
+    int gi = floor(position.x / dx); 
+    int gj = floor(position.y / dx); 
+    int gk = floor(position.z / dx);
+
+    double points[4][4][4];
+    for (int k = 0; k < 4; k++) {
+        for (int j = 0; j < 4; j++) {
+            for (int i = 0; i < 4; i++) {
+                points[k][j][i] = grid(i + gi - 1, j + gj - 1, k + gk - 1);
+            }
+        }
+    }
+
+    Vector3 gpos = Vector3(gi, gj, gk) * dx;
+    Vector3 interp = (position - gpos) / dx;
+
+    return tricubicInterpolate(points, interp.x, interp.y, interp.z);
+}
+
+Vector3 evaluateVelocityAtPosition(Vector3 position) {
+    double hdx = 0.5 * dx;
+    Vector3 offsetU(0.0, hdx, hdx);
+    Vector3 offsetV(hdx, 0.0, hdx);
+    Vector3 offsetW(hdx, hdx, 0.0);
+
+    double vx = interpolateComponent(position, offsetU, U);
+    double vy = interpolateComponent(position, offsetV, V);
+    double vz = interpolateComponent(position, offsetW, W);
+
+    return Vector3(vx, vy, vz);
+}
+</code></pre>
+
+  <p>Where the \(\text{dx}\) variable represents the width of a grid cell, \(\Delta x\), and the 
+     \(\text{U}\), \(\text{V}\), and \(\text{W}\), grids are the respective \(u\), \(v\), and \(w\) 
+     MAC velocity field component grids.</p>
+
+  <p>Note that in the above methods, if the \(\text{position}\) vector is near the edge of the grid, 
+     the \(\text{points}\) array may be set to values that are out of range of the component grid. 
+     In this program, out of range values are simply set to zero.</p>
 
   </div>
   
@@ -682,7 +981,6 @@ end_header
   
 </body>
 </html>
-
 
 
 
