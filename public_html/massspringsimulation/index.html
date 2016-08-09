@@ -1,107 +1,99 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
 
-<head>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700&subset=latin,greek-ext" 
-          rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="../css/basic.css">
+<html>
+    <head>
+        <title>Mass-Spring System Simulation | Ryan Guy's Portfolio</title>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
-	<title>Mass-Spring System Simulation | Ryan Guy's Portfolio</title>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-</head>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300'>
+        <link rel='stylesheet' href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700&subset=latin,greek-ext">
+        <link rel="stylesheet" href="../css/basic.css">
+    </head>
 
-<body>
-  <div class="front_page_column">
-    <div class="header">
-          <div class="header_name">
-              RLGUY
-          </div>
+    <body>
+        <div class="header">
+            <div class="header_name">
+                <a class="header_name" href="../index.html">RLGUY</a>
+            </div>
 
-          <div class="header_links">
-              <ul>
-                  <li class="header_link"><a class="header_link" href="../index.html">Home</a> </li>
-                  <li class="header_link"><a class="header_link" href="../portfolio/index.html">Portfolio</a></li> 
-                  <li class="header_link"><a class="header_link" href="../projects/index.html">Projects</a></li> 
-                  <!--<li class="header_link"><a class="header_link" href="../resume/index.html">Resume</a> </li>-->
-                  <li class="header_link"><a class="header_link" href="mailto:ryan.l.guy@gmail.com">Contact</a></li>
-              </ul>
-          </div>
-          <hr>
+            <div class="header_links">
+                <ul>
+                    <li class="header_link"><a class="header_link" href="../index.html">Home</a> </li>
+                    <li class="header_link"><a class="header_link" href="../portfolio/index.html">Portfolio</a></li> 
+                    <li class="header_link"><a class="header_link" href="../projects/index.html">Projects</a></li> 
+                    <!--<li class="header_link"><a class="header_link" href="../resume/index.html">Resume</a> </li>-->
+                    <li class="header_link"><a class="header_link" href="mailto:ryan.l.guy@gmail.com">Contact</a></li>
+                </ul>
+            </div>
+            <hr>
 
-          <div class="icon_links">
-              <ul>
-                  <li><a class="icon_github" href="https://github.com/rlguy" target="_blank"></a></li>
-                  <li><a class="icon_youtube" href="https://www.youtube.com/channel/UCUiHivn6dWFP4eb2kVcKDyw" target="_blank"></a></li>
-              </ul>
-          </div>
-      </div>
-      <br><br>
-  </div>
+            <div class="icon_links">
+                <ul>
+                    <li><a class="icon_github" href="https://github.com/rlguy" target="_blank"></a></li>
+                    <li><a class="icon_youtube" href="https://www.youtube.com/c/rlguyportfolio" target="_blank"></a></li>
+                </ul>
+            </div>
+        </div>
+        <br><br>
 
-  <div class="center_column">
-  <h1>Mass-Spring System Simulation</h1>
-  
-  <p>This program is an implementation of a mass-spring system. Springs are 
-  modelled after 
-  <a href="http://en.wikipedia.org/wiki/Hooke%27s_law">Hooke's Law</a>. The force 
-  of a spring is damped proportional to the velocity of the compression/extension.</p>
-  
-  <p>
-  This simulation is written in C++ and uses the QT application framework. The graphic user interface allows user to 
-  adjust mass, spring constant, damping constant, rest length, and time step 
-  while the simulation is running.</p>
-  
-  <br><div align="center"><img src="images/interface.jpg" 
-                               alt="GUI"
-                               width="650px"></div><br>
-  
-  <h2>Video</h2>
-  
-  <p>The following video shows the program simulating the motion various mass-spring 
-  systems.</p>
-  
-  <iframe width="800" height="450" 
-    src="http://www.youtube.com/embed/TuQwzNKcUtk" frameborder="0" allowfullscreen>
-  </iframe><br><br>
-  
-  <h2>Controls</h2>
-  
-  <p>The simulation camera is controlled using keyboard input:</p>
-  
-  <p>
-    &nbsp;&nbsp;&nbsp;<b>W/S</b> - Move forward/backward in the direction of camera<br>
-    &nbsp;&nbsp;&nbsp;<b>A/D</b> - Move camera left/right<br>
-    &nbsp;&nbsp;&nbsp;<b>T/G</b> - Move up/down along camera's up vector<br><br>
-    &nbsp;&nbsp;&nbsp;<b>Q/E</b> - Rotate camera left/right (about up vector)<br>
-    &nbsp;&nbsp;&nbsp;<b>R/F</b> - Rotate camera down/up (about right side vector)<br>
-    &nbsp;&nbsp;&nbsp;<b>Z/X</b> - Roll camera left/right about it's direction vector<br>
-  </p><br>
-      
-  
-  <h2>Downloads</h2>
-  
-  <p><b>Download for QT 5.3.0:</b> 
-  <a href="downloads/MassSpringSimulation.zip" target="_blank">Mass-Spring System Simulation</a></p>
-  
-  <b>Source: </b><a href="https://github.com/rlguy/mass_spring_system">
-    https://github.com/rlguy/mass_spring_system</a>
-  </div>
-  
-  <div class="blank">
-  </div>
-  
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        <div class="center_column">
+            <h1>Mass-Spring System Simulation</h1>
 
-  ga('create', 'UA-73726729-1', 'auto');
-  ga('send', 'pageview');
+            <p>This program is an implementation of a mass-spring system. Springs are 
+            modelled after 
+            <a href="http://en.wikipedia.org/wiki/Hooke%27s_law">Hooke's Law</a>. The force 
+            of a spring is damped proportional to the velocity of the compression/extension.</p>
 
-</script>
-  
-</body>
+            <p>This simulation is written in C++ and uses the QT application framework. The graphic user interface allows user to 
+            adjust mass, spring constant, damping constant, rest length, and time step 
+            while the simulation is running.</p>
+
+            <br><div align="center"><img src="images/interface.jpg" alt="GUI" width="650px"></div><br>
+
+            <h2>Video</h2>
+
+            <p>The following video shows the program simulating the motion various mass-spring 
+            systems.</p>
+
+            <iframe 
+                width="800" height="450" 
+                src="http://www.youtube.com/embed/TuQwzNKcUtk" frameborder="0" allowfullscreen>
+            </iframe><br><br>
+
+            <h2>Controls</h2>
+
+            <p>The simulation camera is controlled using keyboard input:</p>
+
+            <p>
+            &nbsp;&nbsp;&nbsp;<b>W/S</b> - Move forward/backward in the direction of camera<br>
+            &nbsp;&nbsp;&nbsp;<b>A/D</b> - Move camera left/right<br>
+            &nbsp;&nbsp;&nbsp;<b>T/G</b> - Move up/down along camera's up vector<br><br>
+            &nbsp;&nbsp;&nbsp;<b>Q/E</b> - Rotate camera left/right (about up vector)<br>
+            &nbsp;&nbsp;&nbsp;<b>R/F</b> - Rotate camera down/up (about right side vector)<br>
+            &nbsp;&nbsp;&nbsp;<b>Z/X</b> - Roll camera left/right about it's direction vector
+            </p>
+
+
+            <h2>Downloads</h2>
+
+            <p><b>Download for QT 5.3.0:</b> 
+            <a href="downloads/MassSpringSimulation.zip" target="_blank">Mass-Spring System Simulation</a></p>
+
+            <b>Source: </b><a href="https://github.com/rlguy/mass_spring_system">
+            https://github.com/rlguy/mass_spring_system</a>
+        </div>
+
+        <div class="blank"></div>
+
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-73726729-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+
+    </body>
 </html>

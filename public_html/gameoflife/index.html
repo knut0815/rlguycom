@@ -1,111 +1,107 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
 
-<head>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700&subset=latin,greek-ext" 
-          rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="../css/basic.css">
+<html>
+    <head>
+        <title>Conway's Game of Life | Ryan Guy's Portfolio</title>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
-	<title>Conway's Game of Life | Ryan Guy's Portfolio</title>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-</head>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300'>
+        <link rel='stylesheet' href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700&subset=latin,greek-ext">
+        <link rel="stylesheet" href="../css/basic.css">
+    </head>
 
-<body>
-  <div class="front_page_column">
-    <div class="header">
-          <div class="header_name">
-              RLGUY
-          </div>
+    <body>
+        <div class="header">
+            <div class="header_name">
+                <a class="header_name" href="../index.html">RLGUY</a>
+            </div>
 
-          <div class="header_links">
-              <ul>
-                  <li class="header_link"><a class="header_link" href="../index.html">Home</a> </li>
-                  <li class="header_link"><a class="header_link" href="../portfolio/index.html">Portfolio</a></li> 
-                  <li class="header_link"><a class="header_link" href="../projects/index.html">Projects</a></li> 
-                  <!--<li class="header_link"><a class="header_link" href="../resume/index.html">Resume</a> </li>-->
-                  <li class="header_link"><a class="header_link" href="mailto:ryan.l.guy@gmail.com">Contact</a></li>
-              </ul>
-          </div>
-          <hr>
+            <div class="header_links">
+                <ul>
+                    <li class="header_link"><a class="header_link" href="../index.html">Home</a> </li>
+                    <li class="header_link"><a class="header_link" href="../portfolio/index.html">Portfolio</a></li> 
+                    <li class="header_link"><a class="header_link" href="../projects/index.html">Projects</a></li> 
+                    <!--<li class="header_link"><a class="header_link" href="../resume/index.html">Resume</a> </li>-->
+                    <li class="header_link"><a class="header_link" href="mailto:ryan.l.guy@gmail.com">Contact</a></li>
+                </ul>
+            </div>
+            <hr>
 
-          <div class="icon_links">
-              <ul>
-                  <li><a class="icon_github" href="https://github.com/rlguy" target="_blank"></a></li>
-                  <li><a class="icon_youtube" href="https://www.youtube.com/channel/UCUiHivn6dWFP4eb2kVcKDyw" target="_blank"></a></li>
-              </ul>
-          </div>
-      </div>
-      <br><br>
-  </div>
+            <div class="icon_links">
+                <ul>
+                    <li><a class="icon_github" href="https://github.com/rlguy" target="_blank"></a></li>
+                    <li><a class="icon_youtube" href="https://www.youtube.com/c/rlguyportfolio" target="_blank"></a></li>
+                </ul>
+            </div>
+        </div>
+        <br><br>
 
-  <div class="center_column">
-  <h1>Conway's Game of Life</h1>
-  
-  <p>This program is an implementation of 
-  <a href="http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">
-    Conway's Game of Life
-  </a>. This version of Life implements the original 
-  <a href="http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Rules">
-    rules
-  </a> and also includes a rule for handling a game with cells of different colour. 
-  When a new cell is born, it will take on the average colour of its neighbours. 
-  The left/right and top/bottom edges of the grid wrap around on each other, so the grid in this 
-  version is not infinite as it is in the original Game of Life.</p>
-  
-  <h2>Video</h2>
-  
-  <p>The following video displays clips of the program evolving from various initial 
-  configurations. Some of the initial states include popular patterns such as the 
-  <a href="http://www.conwaylife.com/wiki/13-engine_Cordership">13-engine Cordership</a>, 
-  <a href="http://www.conwaylife.com/wiki/Infinite_growth#Small_infinite_growth_patterns">Paul Callahan's one row infinite growth pattern</a>, 
-  <a href="http://www.conwaylife.com/wiki/Breeder_1">Breeder 1 (Lobster)</a>, 
-  <a href="http://www.conwaylife.com/wiki/Max">Max</a>, and 
-  <a href="http://www.conwaylife.com/wiki/Halfmax">Halfmax</a>.</p>
+        <div class="center_column">
+            <h1>Conway's Game of Life</h1>
 
-  <div align="center">
-  <iframe width="800" height="450" 
-    src="http://www.youtube.com/embed/LDNlwFTUbaI" frameborder="0" allowfullscreen>
-  </iframe><br><br>
-  </div>
-  
-  <h2>Controls</h2>
-  
-  The demo program starts with a randomized initial state with red and blue cells. 
-  At the top of the window, there is a meter that measures the ratio of red to 
-  blue cells to show which colour is "winning".
-  
-  <p><b>Run Game/Pause Game</b> - Press any key</p>
-  <p><b>Reset Game</b> - Right Click mouse button</p>
-  <p><b>Advance One Generation</b> - Mouse wheel</p>
-  <p><b>Move Camera View</b> - Arrow keys</p><br>
-  
-  <div align="center"><img src="images/screenshot.png" alt="Life"></div><br>
-  
-  <h2>Downloads</h2>
-  
-  <a href="downloads/life-x86.zip" target="_blank">Windows 32-bit</a><br><br>
-  <a href="downloads/life.app.zip" target="_blank">OS X</a><br><br>
-  <a href="downloads/life.love" target="_blank">Linux</a>
-   &nbsp - Linux users will need to install the LOVE package 
-   (<a href="http://love2d.org">http://love2d.org</a>)<br><br><br>
-  
-  <b>Source: </b><a href="https://github.com/rlguy/gameoflife">https://github.com/rlguy/gameoflife</a>
-  
-  <div class="blank">
-  </div>
- 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            <p>This program is an implementation of 
+            <a href="http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">
+            Conway's Game of Life
+            </a>. This version of Life implements the original 
+            <a href="http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Rules">
+            rules
+            </a> and also includes a rule for handling a game with cells of different colour. 
+            When a new cell is born, it will take on the average colour of its neighbours. 
+            The left/right and top/bottom edges of the grid wrap around on each other, so the grid in this 
+            version is not infinite as it is in the original Game of Life.</p>
 
-  ga('create', 'UA-73726729-1', 'auto');
-  ga('send', 'pageview');
+            <h2>Video</h2>
 
-</script>
-  
-</body>
+            <p>The following video displays clips of the program evolving from various initial 
+            configurations. Some of the initial states include popular patterns such as the 
+            <a href="http://www.conwaylife.com/wiki/13-engine_Cordership">13-engine Cordership</a>, 
+            <a href="http://www.conwaylife.com/wiki/Infinite_growth#Small_infinite_growth_patterns">Paul Callahan's one row infinite growth pattern</a>, 
+            <a href="http://www.conwaylife.com/wiki/Breeder_1">Breeder 1 (Lobster)</a>, 
+            <a href="http://www.conwaylife.com/wiki/Max">Max</a>, and 
+            <a href="http://www.conwaylife.com/wiki/Halfmax">Halfmax</a>.</p>
+
+            <div align="center">
+                <iframe 
+                    width="800" height="450" 
+                    src="http://www.youtube.com/embed/LDNlwFTUbaI" frameborder="0" allowfullscreen>
+                </iframe><br><br>
+            </div>
+
+            <h2>Controls</h2>
+
+            The demo program starts with a randomized initial state with red and blue cells. 
+            At the top of the window, there is a meter that measures the ratio of red to 
+            blue cells to show which colour is "winning".
+
+            <p><b>Run Game/Pause Game</b> - Press any key</p>
+            <p><b>Reset Game</b> - Right Click mouse button</p>
+            <p><b>Advance One Generation</b> - Mouse wheel</p>
+            <p><b>Move Camera View</b> - Arrow keys</p><br>
+
+            <div align="center"><img src="images/screenshot.png" alt="Life"></div><br>
+
+            <h2>Downloads</h2>
+
+            <a href="downloads/life-x86.zip" target="_blank">Windows 32-bit</a><br><br>
+            <a href="downloads/life.app.zip" target="_blank">OS X</a><br><br>
+            <a href="downloads/life.love" target="_blank">Linux</a>
+            &nbsp - Linux users will need to install the LOVE package 
+            (<a href="http://love2d.org">http://love2d.org</a>)<br><br><br>
+
+            <b>Source: </b><a href="https://github.com/rlguy/gameoflife">https://github.com/rlguy/gameoflife</a>
+        </div>
+
+        <div class="blank"></div>
+
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-73726729-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+
+    </body>
 </html>

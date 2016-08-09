@@ -1,226 +1,207 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
 
-<head>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700&subset=latin,greek-ext" 
-          rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="../css/basic.css">
+<html>
+    <head>
+        <title>Twitter Hashtag Visualization | Ryan Guy's Portfolio</title>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
-	<title>Twitter Hashtag Visualization | Ryan Guy's Portfolio</title>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-</head>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300'>
+        <link rel='stylesheet' href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700&subset=latin,greek-ext">
+        <link rel="stylesheet" href="../css/basic.css">
+    </head>
 
-<body>
-  <div class="front_page_column">
-    <div class="header">
-          <div class="header_name">
-              RLGUY
-          </div>
+    <body>
 
-          <div class="header_links">
-              <ul>
-                  <li class="header_link"><a class="header_link" href="../index.html">Home</a> </li>
-                  <li class="header_link"><a class="header_link" href="../portfolio/index.html">Portfolio</a></li> 
-                  <li class="header_link"><a class="header_link" href="../projects/index.html">Projects</a></li> 
-                  <!--<li class="header_link"><a class="header_link" href="../resume/index.html">Resume</a> </li>-->
-                  <li class="header_link"><a class="header_link" href="mailto:ryan.l.guy@gmail.com">Contact</a></li>
-              </ul>
-          </div>
-          <hr>
+        <div class="header">
+            <div class="header_name">
+                <a class="header_name" href="../index.html">RLGUY</a>
+            </div>
 
-          <div class="icon_links">
-              <ul>
-                  <li><a class="icon_github" href="https://github.com/rlguy" target="_blank"></a></li>
-                  <li><a class="icon_youtube" href="https://www.youtube.com/channel/UCUiHivn6dWFP4eb2kVcKDyw" target="_blank"></a></li>
-              </ul>
-          </div>
-      </div>
-      <br><br>
-  </div>
+            <div class="header_links">
+                <ul>
+                    <li class="header_link"><a class="header_link" href="../index.html">Home</a> </li>
+                    <li class="header_link"><a class="header_link" href="../portfolio/index.html">Portfolio</a></li> 
+                    <li class="header_link"><a class="header_link" href="../projects/index.html">Projects</a></li> 
+                    <!--<li class="header_link"><a class="header_link" href="../resume/index.html">Resume</a> </li>-->
+                    <li class="header_link"><a class="header_link" href="mailto:ryan.l.guy@gmail.com">Contact</a></li>
+                </ul>
+            </div>
+            <hr>
 
-  <div class="center_column">
-  <h1>Twitter Hashtag Usage Visualization</h1>
-  
-  <p>This program visualizes Twitter hashtag usage over time as a collection of 
-  circles, each corresponding to a hashtag. The size of the circles are proportional 
-  to the usage frequency of the hashtag at a point in time.</p>
-  
-  <p>This program is written in Lua and uses the LOVE framework for graphics and
-  user input. A python script was used to collect and format Twitter data. 
-  The Box2d physics engine was used to handle collisions between circles.</p>
-  
-  <h2>Video</h2>
-  
-  <p>The following video shows the program in action. The dataset in this video 
-  consists of 120,000 tweets spanning a 6 hour period from 3pm to 9pm (PST) on 
-  October 15th, 2013.</p>
+            <div class="icon_links">
+                <ul>
+                    <li><a class="icon_github" href="https://github.com/rlguy" target="_blank"></a></li>
+                    <li><a class="icon_youtube" href="https://www.youtube.com/c/rlguyportfolio" target="_blank"></a></li>
+                </ul>
+            </div>
+        </div>
+        <br><br>
 
-  <div align="center">
-  <iframe width="800" height="450" 
-    src="http://www.youtube.com/embed/sqgYRfmn06M" frameborder="0" allowfullscreen>
-  </iframe><br><br>
-  </div>
-  
-  <h2>Data Collection</h2>
-  
-  <p>Data is collected by using the 
-    <a href="https://dev.twitter.com/streaming/reference/get/statuses/firehose">
-        Twitter Firehose
-    </a> which is offered by Twitter's Streaming API. Only tweets in the English
-    language which contained at least one hashtag mention are collected. Relevant data 
-    is then serialized into chunks of data in the form of Lua tables. Data chunks 
-    have a naming convention of:
-  </p>
-  
-  <p>
-  data-000.lua<br>
-  data-001.lua<br>
-  data-002.lua<br>
-  data-003.lua<br>
-  <b>.</b><br>
-  <b>.</b><br>
-  <b>.</b><br>
-  </p>
-  
-    
-  <p>
-    <a href="downloads/sample_serialized_data.html">
-        Click for an example of a small serialized data chunk consisting of 9 tweets
-    </a>
-  </p>
-  
-  <p>The data chunks are then fed into the program where the user is able to set the speed
-  of playback.</p>
-  
-  <h2>Data Analysis</h2>
-  
-  <p>A useful feature of this program is the ability for the user to select a
-  hashtag bubble to view the defining words of a hashtag. Defining words are 
-  selected by using the 
-  
-  <a href="http://en.wikipedia.org/wiki/Tf%E2%80%93idf">
-    term frequency-inverse document frequency
-  </a> &nbsp;(tf-idf) statistic method.
-  </p>
-  
-  <p>
-  The following image displays a tf-idf visualization for the hashtag <b>"#ENGvPOL"</b>.
-  The size of the hashtag bubble is proportional to the relevance of the tf-idf 
-  statistic.</p>
-  
-  <a href="images/tfidf_visualization_big.jpg">
-  <div align="center"><img src="images/tfidf_visualization.jpg" alt="tfidf"></div>
-  </a>
-  
-  <br><br>
-  
-  <p>The following sample raw tf-idf data is from a dataset collected on December 
-  5th, 2013.</p>
-  
-  <a href="downloads/tfidf_raw_data_05-dec-2013.txt">Click for a sample of raw tf-idf data</a><br>
-  
-  <p>A notable event on this day was the passing of Nelson Mandela. The 
-  following table shows the defining terms along with their tf-idf scores for 
-  the hashtag <b>#RIPNelsonMandela</b>.</p>
-  
-  <table>
-    <tr>
-      <th width="100px">Term</th>
-      <th width="100px">TF-IDF Score</th>
-    </tr>
-    <tr>
-      <td>  <b>nelson<br>
-            mandela<br>
-            inspiration<br>
-            man<br>
-            world<br>
-            hero<br>
-            rip<br>
-            inspirational<br>
-            lost<br>
-            impossible<br>
-            legend<br>
-            peace<br>
-            jackwilshere<br>
-            triumph<br>
-            lukebrooks<br>
-            absence<br>
-            true<br>
-            forgotten<br>
-            such<br>
-            courage<br>
-            seems<br>
-            was<br>
-            always<br>
-            great<br>
-            zendaya</b></td>
-      <td>	1.6539901565698<br>
-            1.6384451363013<br>
-            1.0068699494976<br>
-            0.90116939120047<br>
-            0.83510916049347<br>
-            0.64903928290753<br>
-            0.61338731204298<br>
-            0.55197304242504<br>
-            0.54569420235328<br>
-            0.51504720578213<br>
-            0.50972674646087<br>
-            0.50338493483912<br>
-            0.49945073541737<br>
-            0.49856453112542<br>
-            0.49576923098456<br>
-            0.48915765317966<br>
-            0.48799009177079<br>
-            0.48700501122069<br>
-            0.48232219138257<br>
-            0.47421325948613<br>
-            0.44086341636686<br>
-            0.43949814863293<br>
-            0.43601620113473<br>
-            0.4308400206291<br>
-            0.42257837370852</td>
-  </table>
-  
-  <h2>Downloads</h2>
-  
-  <a href="downloads/twitter_hashtag_visualizer-x86.zip" target="_blank">Windows 32-bit</a><br><br>
-  <a href="downloads/twitter_hashtag_visualizer.app.zip" target="_blank">OS X</a><br><br>
-  <a href="downloads/twitter_hashtag_visualizer.love" target="_blank">Linux</a>
-   &nbsp - Linux users will need to install the LOVE package 
-   (<a href="http://love2d.org">http://love2d.org</a>)<br><br><br>
-  
-  <b>Source: </b><a href="https://github.com/rlguy/twitter_hashtag_visualizer">
-    https://github.com/rlguy/twitter_hashtag_visualizer</a>
-  </div>
-  
-  <div class="blank">
-  </div>
+        <div class="center_column">
+            <h1>Twitter Hashtag Usage Visualization</h1>
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            <p>This program visualizes Twitter hashtag usage over time as a collection of 
+            circles, each corresponding to a hashtag. The size of the circles are proportional 
+            to the usage frequency of the hashtag at a point in time.</p>
 
-  ga('create', 'UA-73726729-1', 'auto');
-  ga('send', 'pageview');
+            <p>This program is written in Lua and uses the LOVE framework for graphics and
+            user input. A python script was used to collect and format Twitter data. 
+            The Box2d physics engine was used to handle collisions between circles.</p>
 
-</script>
-  
-</body>
+            <h2>Video</h2>
+
+            <p>The following video shows the program in action. The dataset in this video 
+            consists of 120,000 tweets spanning a 6 hour period from 3pm to 9pm (PST) on 
+            October 15th, 2013.</p>
+
+            <div align="center">
+                <iframe 
+                    width="800" height="450" 
+                    src="http://www.youtube.com/embed/sqgYRfmn06M" frameborder="0" allowfullscreen>
+                </iframe><br><br>
+            </div>
+
+            <h2>Data Collection</h2>
+
+            <p>Data is collected by using the 
+            <a href="https://dev.twitter.com/streaming/reference/get/statuses/firehose">
+            Twitter Firehose
+            </a> which is offered by Twitter's Streaming API. Only tweets in the English
+            language which contained at least one hashtag mention are collected. Relevant data 
+            is then serialized into chunks of data in the form of Lua tables. Data chunks 
+            have a naming convention of:</p>
+
+            <p>
+            data-000.lua<br>
+            data-001.lua<br>
+            data-002.lua<br>
+            data-003.lua<br>
+            <b>.</b><br>
+            <b>.</b><br>
+            <b>.</b><br>
+            </p>
+
+            <p><a href="downloads/sample_serialized_data.html">
+            Click for an example of a small serialized data chunk consisting of 9 tweets
+            </a></p>
+
+            <p>The data chunks are then fed into the program where the user is able to set the speed
+            of playback.</p>
+
+            <h2>Data Analysis</h2>
+
+            <p>A useful feature of this program is the ability for the user to select a
+            hashtag bubble to view the defining words of a hashtag. Defining words are 
+            selected by using the 
+            <a href="http://en.wikipedia.org/wiki/Tf%E2%80%93idf">
+            term frequency-inverse document frequency
+            </a> &nbsp;(tf-idf) statistic method.</p>
+
+            <p>The following image displays a tf-idf visualization for the hashtag <b>"#ENGvPOL"</b>.
+            The size of the hashtag bubble is proportional to the relevance of the tf-idf 
+            statistic.</p>
+
+            <a href="images/tfidf_visualization_big.jpg">
+                <div align="center"><img src="images/tfidf_visualization.jpg" alt="tfidf"></div>
+            </a>
+
+            <br><br>
+
+            <p>The following sample raw tf-idf data is from a dataset collected on December 
+            5th, 2013.</p>
+
+            <a href="downloads/tfidf_raw_data_05-dec-2013.txt">Click for a sample of raw tf-idf data</a><br>
+
+            <p>A notable event on this day was the death of Nelson Mandela. The 
+            following table shows the defining terms along with their tf-idf scores for 
+            the hashtag <b>#RIPNelsonMandela</b>.</p>
+
+            <table>
+                <tr>
+                    <th width="100px">Term</th>
+                    <th width="100px">TF-IDF Score</th>
+                </tr>
+                <tr>
+                    <td>
+                        <b>nelson<br>
+                        mandela<br>
+                        inspiration<br>
+                        man<br>
+                        world<br>
+                        hero<br>
+                        rip<br>
+                        inspirational<br>
+                        lost<br>
+                        impossible<br>
+                        legend<br>
+                        peace<br>
+                        jackwilshere<br>
+                        triumph<br>
+                        lukebrooks<br>
+                        absence<br>
+                        true<br>
+                        forgotten<br>
+                        such<br>
+                        courage<br>
+                        seems<br>
+                        was<br>
+                        always<br>
+                        great<br>
+                        zendaya</b>
+                    </td>
+                    <td>	
+                        1.6539901565698<br>
+                        1.6384451363013<br>
+                        1.0068699494976<br>
+                        0.90116939120047<br>
+                        0.83510916049347<br>
+                        0.64903928290753<br>
+                        0.61338731204298<br>
+                        0.55197304242504<br>
+                        0.54569420235328<br>
+                        0.51504720578213<br>
+                        0.50972674646087<br>
+                        0.50338493483912<br>
+                        0.49945073541737<br>
+                        0.49856453112542<br>
+                        0.49576923098456<br>
+                        0.48915765317966<br>
+                        0.48799009177079<br>
+                        0.48700501122069<br>
+                        0.48232219138257<br>
+                        0.47421325948613<br>
+                        0.44086341636686<br>
+                        0.43949814863293<br>
+                        0.43601620113473<br>
+                        0.4308400206291<br>
+                        0.42257837370852
+                    </td>
+                </tr>
+            </table>
+
+            <h2>Downloads</h2>
+
+            <a href="downloads/twitter_hashtag_visualizer-x86.zip" target="_blank">Windows 32-bit</a><br><br>
+            <a href="downloads/twitter_hashtag_visualizer.app.zip" target="_blank">OS X</a><br><br>
+            <a href="downloads/twitter_hashtag_visualizer.love" target="_blank">Linux</a>
+            &nbsp - Linux users will need to install the LOVE package 
+            (<a href="http://love2d.org">http://love2d.org</a>)<br><br><br>
+
+            <b>Source: </b><a href="https://github.com/rlguy/twitter_hashtag_visualizer">
+            https://github.com/rlguy/twitter_hashtag_visualizer</a>
+        </div>
+
+        <div class="blank"></div>
+
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-73726729-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+
+    </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-

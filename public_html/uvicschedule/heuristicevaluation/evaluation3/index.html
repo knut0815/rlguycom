@@ -1,250 +1,245 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
 
-<head>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700&subset=latin,greek-ext" 
-          rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="../../../css/basic.css">
+<html>
+    <head>
+        <title>UvicSchedule - Heuristic Evaluation #3 | Ryan Guy's Portfolio</title>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
-	<title>UvicSchedule - Heuristic Evaluation #3</title>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-</head>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300'>
+        <link rel='stylesheet' href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700&subset=latin,greek-ext">
+        <link rel="stylesheet" href="../../../css/basic.css">
+    </head>
 
-<body>
-  <div class="front_page_column">
-    <div class="header">
-          <div class="header_name">
-              RLGUY
-          </div>
+    <body>
+        <div class="header">
+            <div class="header_name">
+                <a class="header_name" href="../../../index.html">RLGUY</a>
+            </div>
 
-          <div class="header_links">
-              <ul>
-                  <li class="header_link"><a class="header_link" href="../../../index.html">Home</a> </li>
-                  <li class="header_link"><a class="header_link" href="../../../portfolio/index.html">Portfolio</a></li> 
-                  <li class="header_link"><a class="header_link" href="../../../projects/index.html">Projects</a></li> 
-                  <!--<li class="header_link"><a class="header_link" href="../../../resume/index.html">Resume</a> </li>-->
-                  <li class="header_link"><a class="header_link" href="mailto:ryan.l.guy@gmail.com">Contact</a></li>
-              </ul>
-          </div>
-          <hr>
+            <div class="header_links">
+                <ul>
+                    <li class="header_link"><a class="header_link" href="../../../index.html">Home</a> </li>
+                    <li class="header_link"><a class="header_link" href="../../../portfolio/index.html">Portfolio</a></li> 
+                    <li class="header_link"><a class="header_link" href="../../../projects/index.html">Projects</a></li> 
+                    <!--<li class="header_link"><a class="header_link" href="../../../resume/index.html">Resume</a> </li>-->
+                    <li class="header_link"><a class="header_link" href="mailto:ryan.l.guy@gmail.com">Contact</a></li>
+                </ul>
+            </div>
+            <hr>
 
-          <div class="icon_links">
-              <ul>
-                  <li><a class="icon_github" href="https://github.com/rlguy" target="_blank"></a></li>
-                  <li><a class="icon_youtube" href="https://www.youtube.com/channel/UCUiHivn6dWFP4eb2kVcKDyw" target="_blank"></a></li>
-              </ul>
-          </div>
-      </div>
-      <br><br>
-  </div>
-  
-  <div class="center_column">
-  
-  <h1>Heuristic Evaluation #3 | Ryan Guy's Portfolio</h1>
-  
-  <h2>1. Introduction</h2>
-  
-  <p>UVicSchedule is an application to manage the user’s class schedule in a simple and easy way.
-  It’s easier to use than the existing methods and allow the users to compare their schedules with their
-  friend’s schedules.</p>
-  
-  <h2>2. Method</h2>
-  
-  <h3>2.1 Heuristics</h3>
-  
-  <p>The software prototype for UVicSchedule was evaluated using Nielsen’s heuristics, that are
-  listed below:</p>
-  
-  <p>
-    &nbsp;&nbsp;&nbsp;H1: Visibility of system status<br><br>
-    &nbsp;&nbsp;&nbsp;H2: Match between system and real world<br><br>
-    &nbsp;&nbsp;&nbsp;H3: User control and freedom<br><br>
-    &nbsp;&nbsp;&nbsp;H4: Consistency and standards<br><br>
-    &nbsp;&nbsp;&nbsp;H5: Help users recognize, diagnose, recover from errors<br><br>
-    &nbsp;&nbsp;&nbsp;H6: Error prevention<br><br>
-    &nbsp;&nbsp;&nbsp;H7: Recognition rather than recall<br><br>
-    &nbsp;&nbsp;&nbsp;H8: Flexibility and efficiency of use<br><br>
-    &nbsp;&nbsp;&nbsp;H9: Aesthetic and minimalist design<br><br>
-    &nbsp;&nbsp;&nbsp;H10: Help and documentation
-  </p>
-  
-  <h3>2.2 Severity</h3>
-  
-  <p>The severity of the violation was given according to Nielsen’s scale, that is defined as:</p>
-  
-  <p> 1 = I don’t agree that this is a usability problem at all<br>
-      2 = Cosmetic problem only: need not be fixed unless extra time is available on project<br>
-      3 = Minor usability problem: fixing this should be given low priority<br>
-      4 = Major usability problem: important to fix, so should be given high priority<br>
-      5 = Usability catastrophe: imperative to fix this before product can be released
-  </p>
-    
-  <h2>3. Findings</h2>
-  
-  <h3>3.1. [H6 Error prevention][Severity 5]</h3>
-  <ul>
-    <li><b><i>Problem</i></b><br>
-      The log out button is located near the tabs, what can make the user click on it by mistake.
-    </li>
-    <li><b><i>Severity</i></b><br>
-      To use the app it’s necessary that the user is logged in, so logging out by accident may be very
-      frustrating and time consuming for the user. Moreover, there is no warning when trying to log out, so
-      it’s really important to avoid the user from clicking on the log out button by mistake.
-    </li>
-    <li><b><i>Suggested solution</i></b><br>
-      Move the log out button to another place, such as near the share button in the right side of the
-      screen.
-    </li>
-  </ul>
-  
-  <h3>3.2. [H6 Error prevention][Severity 1]</h3>
-  <ul>
-    <li><b><i>Problem</i></b><br>
-      There is no warning when trying to log out, so, if the user click in the log out button by mistake,
-      he/she has to log in again.
-    </li>
-    <li><b><i>Severity</i></b><br>
-      By itself this is not a big problem, but contribute to the severity of the previous violation
-    </li>
-    <li><b><i>Suggested solution</i></b><br>
-      Add a warning when trying to log out from the system.
-      Obs.: If the previous violation is fixed, it’s not necessary to fix this one.
-    </li>
-  </ul>
-  
-  <h3>3.3. [H7 Recognition rather than recall][Severity 3]</h3>
-  <ul>
-    <li><b><i>Problem</i></b><br>
-      Closing side window is not something intuitive, it’s necessary to click in the active tab to do it.
-      In general, clicking in an active tab gives no result, but in the app is the only way to close it.
-    </li>
-    <li><b><i>Severity</i></b><br>
-      Even though it’s not hard to remember how to do the operation, it doesn’t make good use of
-      the user’s previous experiences.
-    </li>
-    <li><b><i>Suggested solution</i></b><br>
-      Add a close button in the side window.
-    </li>
-  </ul>
-  
-  <h3>3.4. [H4 Consistency and standards][Severity 4]</h3>
-  <ul>
-    <li><b><i>Problem</i></b><br>
-      Buttons and clickable areas are not consistent through different pages of the system. For
-      example, in general clickable areas are blue (e.g., icons and names), but while user is searching for
-      courses, clickable areas are defined by a lighter background color and the blue text is used to highlight
-      selected courses.
-    </li>
-    <li><b><i>Severity</i></b><br>
-      This problem makes the system harder to use and has an impact in its aesthetic.
-    </li>
-    <li><b><i>Suggested solution</i></b><br>
-      Choose a standard for buttons and use it in all pages
-    </li>
-  </ul>
-  
-  <h3>3.5. [H4 Consistency and standards][Severity 4]</h3>
-  <ul>
-    <li><b><i>Problem</i></b><br>
-      In the schedules window, the add contact button is not in a fixed position as the buttons in the
-      courses window. Moreover, since the cited button is bellow all friends, if the user has many friends
-      the button may not be visible.
-    </li>
-    <li><b><i>Severity</i></b><br>
-      The current location of the add contact button is inconsistent with the courses page, and it’s
-      also a visibility problem.
-    </li>
-    <li><b><i>Suggested solution</i></b><br>
-      Fix the button in the bottom of the page, such as the search course button in the courses page
-    </li>
-  </ul>
-  
-  <h3>3.6. [H9 Aesthetic and minimalist design][Severity 3]</h3>
-  <ul>
-    <li><b><i>Problem</i></b><br>
-      When overlapping the schedules, sometimes it’s hard to identify what is the names of the
-      classes for each student, especially when two classes are in the same time. This is an aesthetic problem.
-    </li>
-    <li><b><i>Severity</i></b><br>
-      Even though it’s not aesthetically pleasing and a little confusing, it still accomplish it’s
-      function.
-    </li>
-    <li><b><i>Suggested solution</i></b><br>
-      Show the schedules side by side or change the color of the text to correspond to the color of
-      the background.
-    </li>
-  </ul>
-  
-  <h3>3.7. [H3 User control and freedom][Severity 5]</h3>
-  <ul>
-    <li><b><i>Problem</i></b><br>
-      The system don’t allow the user to register for the class but not for the tutorial, obligating the
-      user to do something he/she doesn’t want to do.
-    </li>
-    <li><b><i>Severity</i></b><br>
-      What the system do is not consistent with the rules of the university, where it’s possible to the
-      students to register only for the class.
-    </li>
-    <li><b><i>Suggested solution</i></b><br>
-      Remove the restriction from the software and show class and tutorial separated in the courses
-      page.
-    </li>
-  </ul>
-  
-  <h3>3.8. . [H8 Flexibility and efficiency of use][Severity 2]</h3>
-  <ul>
-    <li><b><i>Problem</i></b><br>
-      The student’s classes are exhibit in the order they were registered, what make it harder for the
-      user to find the classes he/she wants in the list.
-    </li>
-    <li><b><i>Severity</i></b><br>
-      Since a student don’t have many courses, it is not too hard to find a course even if they are not
-      ordered
-    </li>
-    <li><b><i>Suggested solution</i></b><br>
-      Show the courses in alphabetical order or give to the user the option to order the classes.
-    </li>
-  </ul>
-  
-  <h3>3.9. [H3 User control and freedom][Severity 5]</h3>
-  <ul>
-    <li><b><i>Problem</i></b><br>
-      There is not possible in the system to remove friends.
-    </li>
-    <li><b><i>Severity</i></b><br>
-      When two users become friend they can see each other schedule, but if they want to stop sharing
-      they cannot.
-    </li>
-    <li><b><i>Suggested solution</i></b><br>
-      Add an option to remove friends.
-    </li>
-  </ul>
-  
-  <h2>Summary of findings</h2>
-  
-  <img src="images/summary.png">
-  
-  <br><br><br><br><p><a href="../index.html">&laquo; Back</a></p>
-  
-  </div>
-  
-  <div class="blank">
-  </div>
+            <div class="icon_links">
+                <ul>
+                    <li><a class="icon_github" href="https://github.com/rlguy" target="_blank"></a></li>
+                    <li><a class="icon_youtube" href="https://www.youtube.com/c/rlguyportfolio" target="_blank"></a></li>
+                </ul>
+            </div>
+        </div>
+        <br><br>
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        <div class="center_column">
 
-  ga('create', 'UA-73726729-1', 'auto');
-  ga('send', 'pageview');
+        <h1>Heuristic Evaluation #3</h1>
 
-</script>
-  
-</body>
+        <h2>1. Introduction</h2>
+
+        <p>UVicSchedule is an application to manage the user’s class schedule in a simple and easy way.
+        It’s easier to use than the existing methods and allow the users to compare their schedules with their
+        friend’s schedules.</p>
+
+        <h2>2. Method</h2>
+
+        <h3>2.1 Heuristics</h3>
+
+        <p>The software prototype for UVicSchedule was evaluated using Nielsen’s heuristics, that are
+        listed below:</p>
+
+        <p>
+        &nbsp;&nbsp;&nbsp;H1: Visibility of system status<br><br>
+        &nbsp;&nbsp;&nbsp;H2: Match between system and real world<br><br>
+        &nbsp;&nbsp;&nbsp;H3: User control and freedom<br><br>
+        &nbsp;&nbsp;&nbsp;H4: Consistency and standards<br><br>
+        &nbsp;&nbsp;&nbsp;H5: Help users recognize, diagnose, recover from errors<br><br>
+        &nbsp;&nbsp;&nbsp;H6: Error prevention<br><br>
+        &nbsp;&nbsp;&nbsp;H7: Recognition rather than recall<br><br>
+        &nbsp;&nbsp;&nbsp;H8: Flexibility and efficiency of use<br><br>
+        &nbsp;&nbsp;&nbsp;H9: Aesthetic and minimalist design<br><br>
+        &nbsp;&nbsp;&nbsp;H10: Help and documentation
+        </p>
+
+        <h3>2.2 Severity</h3>
+
+        <p>The severity of the violation was given according to Nielsen’s scale, that is defined as:</p>
+
+        <p> 1 = I don’t agree that this is a usability problem at all<br>
+        2 = Cosmetic problem only: need not be fixed unless extra time is available on project<br>
+        3 = Minor usability problem: fixing this should be given low priority<br>
+        4 = Major usability problem: important to fix, so should be given high priority<br>
+        5 = Usability catastrophe: imperative to fix this before product can be released
+        </p>
+
+        <h2>3. Findings</h2>
+
+        <h3>3.1. [H6 Error prevention][Severity 5]</h3>
+        <ul>
+            <li><b><i>Problem</i></b><br>
+            The log out button is located near the tabs, what can make the user click on it by mistake.
+            </li>
+            <li><b><i>Severity</i></b><br>
+            To use the app it’s necessary that the user is logged in, so logging out by accident may be very
+            frustrating and time consuming for the user. Moreover, there is no warning when trying to log out, so
+            it’s really important to avoid the user from clicking on the log out button by mistake.
+            </li>
+            <li><b><i>Suggested solution</i></b><br>
+            Move the log out button to another place, such as near the share button in the right side of the
+            screen.
+            </li>
+        </ul>
+
+        <h3>3.2. [H6 Error prevention][Severity 1]</h3>
+        <ul>
+            <li><b><i>Problem</i></b><br>
+            There is no warning when trying to log out, so, if the user click in the log out button by mistake,
+            he/she has to log in again.
+            </li>
+            <li><b><i>Severity</i></b><br>
+            By itself this is not a big problem, but contribute to the severity of the previous violation
+            </li>
+            <li><b><i>Suggested solution</i></b><br>
+            Add a warning when trying to log out from the system.
+            Obs.: If the previous violation is fixed, it’s not necessary to fix this one.
+            </li>
+        </ul>
+
+        <h3>3.3. [H7 Recognition rather than recall][Severity 3]</h3>
+        <ul>
+            <li><b><i>Problem</i></b><br>
+            Closing side window is not something intuitive, it’s necessary to click in the active tab to do it.
+            In general, clicking in an active tab gives no result, but in the app is the only way to close it.
+            </li>
+            <li><b><i>Severity</i></b><br>
+            Even though it’s not hard to remember how to do the operation, it doesn’t make good use of
+            the user’s previous experiences.
+            </li>
+            <li><b><i>Suggested solution</i></b><br>
+            Add a close button in the side window.
+            </li>
+        </ul>
+
+        <h3>3.4. [H4 Consistency and standards][Severity 4]</h3>
+        <ul>
+            <li><b><i>Problem</i></b><br>
+            Buttons and clickable areas are not consistent through different pages of the system. For
+            example, in general clickable areas are blue (e.g., icons and names), but while user is searching for
+            courses, clickable areas are defined by a lighter background color and the blue text is used to highlight
+            selected courses.
+            </li>
+            <li><b><i>Severity</i></b><br>
+            This problem makes the system harder to use and has an impact in its aesthetic.
+            </li>
+            <li><b><i>Suggested solution</i></b><br>
+            Choose a standard for buttons and use it in all pages
+            </li>
+        </ul>
+
+        <h3>3.5. [H4 Consistency and standards][Severity 4]</h3>
+        <ul>
+            <li><b><i>Problem</i></b><br>
+            In the schedules window, the add contact button is not in a fixed position as the buttons in the
+            courses window. Moreover, since the cited button is bellow all friends, if the user has many friends
+            the button may not be visible.
+            </li>
+            <li><b><i>Severity</i></b><br>
+            The current location of the add contact button is inconsistent with the courses page, and it’s
+            also a visibility problem.
+            </li>
+            <li><b><i>Suggested solution</i></b><br>
+            Fix the button in the bottom of the page, such as the search course button in the courses page
+            </li>
+        </ul>
+
+        <h3>3.6. [H9 Aesthetic and minimalist design][Severity 3]</h3>
+        <ul>
+            <li><b><i>Problem</i></b><br>
+            When overlapping the schedules, sometimes it’s hard to identify what is the names of the
+            classes for each student, especially when two classes are in the same time. This is an aesthetic problem.
+            </li>
+            <li><b><i>Severity</i></b><br>
+            Even though it’s not aesthetically pleasing and a little confusing, it still accomplish it’s
+            function.
+            </li>
+            <li><b><i>Suggested solution</i></b><br>
+            Show the schedules side by side or change the color of the text to correspond to the color of
+            the background.
+            </li>
+        </ul>
+
+        <h3>3.7. [H3 User control and freedom][Severity 5]</h3>
+        <ul>
+            <li><b><i>Problem</i></b><br>
+            The system don’t allow the user to register for the class but not for the tutorial, obligating the
+            user to do something he/she doesn’t want to do.
+            </li>
+            <li><b><i>Severity</i></b><br>
+            What the system do is not consistent with the rules of the university, where it’s possible to the
+            students to register only for the class.
+            </li>
+            <li><b><i>Suggested solution</i></b><br>
+            Remove the restriction from the software and show class and tutorial separated in the courses
+            page.
+            </li>
+        </ul>
+
+        <h3>3.8. . [H8 Flexibility and efficiency of use][Severity 2]</h3>
+        <ul>
+            <li><b><i>Problem</i></b><br>
+            The student’s classes are exhibit in the order they were registered, what make it harder for the
+            user to find the classes he/she wants in the list.
+            </li>
+            <li><b><i>Severity</i></b><br>
+            Since a student don’t have many courses, it is not too hard to find a course even if they are not
+            ordered
+            </li>
+            <li><b><i>Suggested solution</i></b><br>
+            Show the courses in alphabetical order or give to the user the option to order the classes.
+            </li>
+        </ul>
+
+        <h3>3.9. [H3 User control and freedom][Severity 5]</h3>
+        <ul>
+            <li><b><i>Problem</i></b><br>
+            There is not possible in the system to remove friends.
+            </li>
+            <li><b><i>Severity</i></b><br>
+            When two users become friend they can see each other schedule, but if they want to stop sharing
+            they cannot.
+            </li>
+            <li><b><i>Suggested solution</i></b><br>
+            Add an option to remove friends.
+            </li>
+        </ul>
+
+        <h2>Summary of findings</h2>
+
+        <img src="images/summary.png">
+
+        <br><br><br><br><p><a href="../index.html">&laquo; Back</a></p>
+
+        </div>
+
+        <div class="blank">
+        </div>
+
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-73726729-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+
+    </body>
 </html>
 
 

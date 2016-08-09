@@ -1,314 +1,291 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
 
-<head>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700&subset=latin,greek-ext" 
-          rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="../../../css/basic.css">
+<html>
+    <head>
+        <title>UvicSchedule - Heuristic Evaluation #2 | Ryan Guy's Portfolio</title>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
-	<title>UvicSchedule - Heuristic Evaluation #2 | Ryan Guy's Portfolio</title>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-</head>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300'>
+        <link rel='stylesheet' href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700&subset=latin,greek-ext">
+        <link rel="stylesheet" href="../../../css/basic.css">
+    </head>
 
-<body>
-  <div class="front_page_column">
-    <div class="header">
-          <div class="header_name">
-              RLGUY
-          </div>
+    <body>
+        <div class="header">
+            <div class="header_name">
+                <a class="header_name" href="../../../index.html">RLGUY</a>
+            </div>
 
-          <div class="header_links">
-              <ul>
-                  <li class="header_link"><a class="header_link" href="../../../index.html">Home</a> </li>
-                  <li class="header_link"><a class="header_link" href="../../../portfolio/index.html">Portfolio</a></li> 
-                  <li class="header_link"><a class="header_link" href="../../../projects/index.html">Projects</a></li> 
-                  <!--<li class="header_link"><a class="header_link" href="../../../resume/index.html">Resume</a> </li>-->
-                  <li class="header_link"><a class="header_link" href="mailto:ryan.l.guy@gmail.com">Contact</a></li>
-              </ul>
-          </div>
-          <hr>
+            <div class="header_links">
+                <ul>
+                    <li class="header_link"><a class="header_link" href="../../../index.html">Home</a> </li>
+                    <li class="header_link"><a class="header_link" href="../../../portfolio/index.html">Portfolio</a></li> 
+                    <li class="header_link"><a class="header_link" href="../../../projects/index.html">Projects</a></li> 
+                    <!--<li class="header_link"><a class="header_link" href="../../../resume/index.html">Resume</a> </li>-->
+                    <li class="header_link"><a class="header_link" href="mailto:ryan.l.guy@gmail.com">Contact</a></li>
+                </ul>
+            </div>
+            <hr>
 
-          <div class="icon_links">
-              <ul>
-                  <li><a class="icon_github" href="https://github.com/rlguy" target="_blank"></a></li>
-                  <li><a class="icon_youtube" href="https://www.youtube.com/channel/UCUiHivn6dWFP4eb2kVcKDyw" target="_blank"></a></li>
-              </ul>
-          </div>
-      </div>
-      <br><br>
-  </div>
-  
-  <div class="center_column">
-  
-  <h1>Heuristic Evaluation #2</h1>
-  
-  <h2>1 Introduction</h2>
-  
-  <p>The application prototype that will be evaluated is named UVicSchedule.</p>
-  
-  <p>This application will allow the user to search for courses offered by UVic and officially register
-  in them. It also allows the user to view their current, past, and upcoming schedules. Other users
-  may be searched and then a request may be sent to view that users’ schedule. If accepted, the
-  other user will be able to compare schedules.</p>
-  
-  <h2>2 Method</h2>
-  
-  <h3>Heuristics:</h3>
-  
-  <ol>
-    <li><u>Visibility of System Status</u>: 
-      The system should keep the user informed about what is
-      currently happening through appropriate feedback.
-    </li>
-    
-    <li><u>System Match with Real World</u>: 
-       The terms and metaphors should be understandable and
-       familiar to the user.
-    </li>
-    
-    <li><u>User Control and Freedom</u>: 
-      The system should be easy to navigate through. It should
-      provide exits from scenarios.
-    </li>
-    
-    <li><u>Consistency and Standards</u>: 
-      The system should follow platform conventions and the
-      design should be the same throughout the application.
-    </li>
-    
-    <li><u>Error Recovery</u>: 
-       If an error occurs, the system should assist the user in correcting it.
-    </li>
-    
-    <li><u>Error Prevention</u>:  
-      The system design should prevent the user from causing errors.
-    </li>
-    
-    <li><u>Recognition Instead of Recall</u>:
-       The application should be used intuitively without the user
-       memorizing how to perform tasks.
-    </li>
-    
-    <li><u>Aesthetic and Minimalist Design</u>:  
-       The screens should be aesthetically pleasing and
-       uncluttered.
-    </li>
-  </ol>
-  
-  <h3>Severity Scale:</h3>
-  
-  <p>
-    <b>0.</b> I don’t agree that this is a usability problem at all.<br>
-    <b>1.</b> Cosmetic problem only. Only fix if there is extra time available.<br>
-    <b>2.</b> Minor usability problem. Should be given low priority.<br>
-    <b>3.</b> Major usability problem. Should be given high priority.<br>
-    <b>4.</b> Usability catastrophe. Must be fixed before product can be released.<br>
-  </p>
-  
-  <h2>3 Findings</h2>
-  
-  <ul>
-    <li>
-      [H-3 User Control] [ Severity 3]
-      <ul>
-        <li>
-          <mark>There is no way to register a user account for this application.</mark>
-        </li>
-        <li>
-          Unless this application is fully integrated into the database, users will not be able
-          register and log in, making this application impossible to use.
-        </li>
-        <li>
-          I realize that in order to register for the courses you have to already have a UVic
-          My Page account, but there should be some way to link the application with the
-          database. Creating a register page that is accessible from the log in screen will
-          solve this issue.
-        </li>
-      </ul>
-    </li><br>
-  
-    <li>
-      [H-3 User Control] [ Severity 2]
-      <ul>
-        <li>
-          <mark>There is very little indication that the courses displayed on the main screen open
-          up an information screen when clicked.</mark>
-        </li>
-        <li>
-          The user will eventually figure this out, however it is a slight inconvenience and
-          should be fixed because some users might not realize.
-        </li>
-        <li>
-          To fix this issue, somehow make the courses stand out slightly. You can perhaps
-          outline them in a different colour or make the name of the course bold and a
-          different colour.
-        </li>
-      </ul>
-    </li><br>
-    
-    <li>
-      [H-3 User Freedom] [Severity 2]
-      <ul>
-        <li>
-          <mark>Once another user’s request to view your schedule, there is no way to not allow
-          him to view it anymore.</mark>
-        </li>
-        <li>
-          This could be safety issue if someone that the user does not feel safe around
-          anymore knows their schedule and where they will be at certain times. Should be
-          fixed but not imperative.
-        </li>
-        <li>
-          Renaming the link Add/Remove Contact and then providing the user with the
-          option to remove users they have already selected would solve this issue.
-        </li>
-      </ul>
-    </li>
-    
-    <li>
-      [H-8 Aesthetic Design] [Severity 1]
-      <ul>
-        <li>
-          <mark>Under the schedules screen, you can select other user’s schedules to be displayed
-          but you cannot unselect your own.</mark>
-        </li>
-        <li>
-          The screen could become too cluttered if their schedule is different than yours and
-          the names or times of classes overlap. This is a cosmetic issue only.
-        </li>
-        <li>
-          The user should be able to deselect their own schedule so that they are only
-          viewing other users.
-        </li>
-      </ul>
-    </li><br>
-    
-    <li>
-      [H-4 Consistency] [Severity 2]
-      <ul>
-        <li>
-          <mark>You cannot view class information from the schedules or the courses screen when
-          the course is clicked on, but you are able to view it from the main screen.</mark>
-        </li>
-        <li>
-          This will confuse users when they attempt to view course information from the
-          Schedule screen like they would from the main screen. It is a minor issue but
-          should be fixed.
-        </li>
-        <li>
-          Allowing users to view course information from the schedule screen when the
-          course is clicked on.
-        </li>
-      </ul>
-    </li><br>
-    
-    <li>
-      [H-3 User Control] [Severity 3]
-      <ul>
-        <li>
-          <mark>There is only one way to return to the main screen that displays the schedule and
-          allows users to view the course information if they click on one of the courses and
-          it is not obvious that it does this.</mark>
-        </li>
-        <li>
-          This issue should be given high priority because the main screen is currently the
-          only screen that allows the user to view course information.
-        </li>
-        <li>
-          Placing a button on the top bar near the Logout button labelled Main or Home
-          will allow the user to navigate back.
-        </li>
-      </ul>
-    </li><br>
-    
-    <li>
-      [H-4 Consistency] [Severity 3]
-      <ul>
-        <li>
-          <mark>There is no way to drop a course when the user is in the courses screen but the
-          user can add courses from this screen.</mark>
-        </li>
-        <li>
-          Currently there is only one screen that the user can drop classes from and once
-          they navigate away from that screen it is very difficult to return to it, which makes
-          this issue high priority.
-        </li>
-        <li>
-          Being able to drop courses from the courses screen would solve this.
-        </li>
-      </ul>
-    </li><br>
-    
-    <li>
-      [H-1 Visibility of System Status] [Severity 1]
-      <ul>
-        <li>
-          <mark>The current waitlist size is not indicated on the page</mark>
-        </li>
-        <li>
-          This issue is cosmetic and only slightly inconvenient to the user
-        </li>
-        <li>
-          Displaying the amount of people on the waitlist would solve this issue.
-        </li>
-      </ul>
-    </li>
-  </ul>
-  
-  <h2>4 Summary</h2>
-  
-  <p>Overall, the design of the application is very aesthetically pleasing, and the displaying of the
-  other users courses as coloured overlaps was a very nice touch. Searching for courses is a simple
-  process and by comparing the current schedule with potential classes to see if there are any
-  conflicts makes selecting classes much simpler.</p>
-  
-  <p>However, small flaws in the navigation as well as inconsistency in the application will make it
-  very hard for users who do not have experience with this application. Navigating back to the
-  main screen is almost impossibly unless the user knows that they must select the unlabelled
-  button in the top right corner, and then select the Google Calendar button, then click cancel, and
-  then click on the background screen. Because certain tasks, such as viewing course information
-  and dropping a course, are only available on the main screen, it makes the issue of navigation
-  much worse.</p>
-  
-  <p>Being able to delete contacts so that they are not able to view your schedule is important as well.
-  It will prevent users from essentially being able to stalk other users if they are so inclined.</p>
-  
-  <br><br><br><br><p><a href="../index.html">&laquo; Back</a></p>
-  
-  </div>
-  
-  <div class="blank">
-  </div>
-  
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            <div class="icon_links">
+                <ul>
+                    <li><a class="icon_github" href="https://github.com/rlguy" target="_blank"></a></li>
+                    <li><a class="icon_youtube" href="https://www.youtube.com/c/rlguyportfolio" target="_blank"></a></li>
+                </ul>
+            </div>
+        </div>
+        <br><br>
 
-  ga('create', 'UA-73726729-1', 'auto');
-  ga('send', 'pageview');
+        <div class="center_column">
 
-</script>
-  
-</body>
+            <h1>Heuristic Evaluation #2</h1>
+
+            <h2>1 Introduction</h2>
+
+            <p>The application prototype that will be evaluated is named UVicSchedule.</p>
+
+            <p>This application will allow the user to search for courses offered by UVic and officially register
+            in them. It also allows the user to view their current, past, and upcoming schedules. Other users
+            may be searched and then a request may be sent to view that users’ schedule. If accepted, the
+            other user will be able to compare schedules.</p>
+
+            <h2>2 Method</h2>
+
+            <h3>Heuristics:</h3>
+
+            <ol>
+                <li><u>Visibility of System Status</u>: 
+                The system should keep the user informed about what is
+                currently happening through appropriate feedback.
+                </li>
+
+                <li><u>System Match with Real World</u>: 
+                The terms and metaphors should be understandable and
+                familiar to the user.
+                </li>
+
+                <li><u>User Control and Freedom</u>: 
+                The system should be easy to navigate through. It should
+                provide exits from scenarios.
+                </li>
+
+                <li><u>Consistency and Standards</u>: 
+                The system should follow platform conventions and the
+                design should be the same throughout the application.
+                </li>
+
+                <li><u>Error Recovery</u>: 
+                If an error occurs, the system should assist the user in correcting it.
+                </li>
+
+                <li><u>Error Prevention</u>:  
+                The system design should prevent the user from causing errors.
+                </li>
+
+                <li><u>Recognition Instead of Recall</u>:
+                The application should be used intuitively without the user
+                memorizing how to perform tasks.
+                </li>
+
+                <li><u>Aesthetic and Minimalist Design</u>:  
+                The screens should be aesthetically pleasing and
+                uncluttered.
+                </li>
+            </ol>
+
+            <h3>Severity Scale:</h3>
+
+            <p>
+            <b>0.</b> I don’t agree that this is a usability problem at all.<br>
+            <b>1.</b> Cosmetic problem only. Only fix if there is extra time available.<br>
+            <b>2.</b> Minor usability problem. Should be given low priority.<br>
+            <b>3.</b> Major usability problem. Should be given high priority.<br>
+            <b>4.</b> Usability catastrophe. Must be fixed before product can be released.<br>
+            </p>
+
+            <h2>3 Findings</h2>
+
+            <ul>
+                <li>
+                    [H-3 User Control] [ Severity 3]
+                    <ul>
+                        <li>
+                            <mark>There is no way to register a user account for this application.</mark>
+                        </li>
+                        <li>
+                            Unless this application is fully integrated into the database, users will not be able
+                            register and log in, making this application impossible to use.
+                        </li>
+                        <li>
+                            I realize that in order to register for the courses you have to already have a UVic
+                            My Page account, but there should be some way to link the application with the
+                            database. Creating a register page that is accessible from the log in screen will
+                            solve this issue.
+                        </li>
+                    </ul>
+                </li><br>
+
+                <li>
+                    [H-3 User Control] [ Severity 2]
+                    <ul>
+                        <li>
+                            <mark>There is very little indication that the courses displayed on the main screen open
+                            up an information screen when clicked.</mark>
+                        </li>
+                        <li>
+                            The user will eventually figure this out, however it is a slight inconvenience and
+                            should be fixed because some users might not realize.
+                        </li>
+                        <li>
+                            To fix this issue, somehow make the courses stand out slightly. You can perhaps
+                            outline them in a different colour or make the name of the course bold and a
+                            different colour.
+                        </li>
+                    </ul>
+                </li><br>
+
+                <li>
+                    [H-3 User Freedom] [Severity 2]
+                    <ul>
+                        <li>
+                            <mark>Once another user’s request to view your schedule, there is no way to not allow
+                            him to view it anymore.</mark>
+                        </li>
+                        <li>
+                            This could be safety issue if someone that the user does not feel safe around
+                            anymore knows their schedule and where they will be at certain times. Should be
+                            fixed but not imperative.
+                        </li>
+                        <li>
+                            Renaming the link Add/Remove Contact and then providing the user with the
+                            option to remove users they have already selected would solve this issue.
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    [H-8 Aesthetic Design] [Severity 1]
+                    <ul>
+                        <li>
+                            <mark>Under the schedules screen, you can select other user’s schedules to be displayed
+                            but you cannot unselect your own.</mark>
+                        </li>
+                        <li>
+                            The screen could become too cluttered if their schedule is different than yours and
+                            the names or times of classes overlap. This is a cosmetic issue only.
+                        </li>
+                        <li>
+                            The user should be able to deselect their own schedule so that they are only
+                            viewing other users.
+                        </li>
+                    </ul>
+                </li><br>
+
+                <li>
+                [H-4 Consistency] [Severity 2]
+                    <ul>
+                        <li>
+                            <mark>You cannot view class information from the schedules or the courses screen when
+                            the course is clicked on, but you are able to view it from the main screen.</mark>
+                        </li>
+                        <li>
+                            This will confuse users when they attempt to view course information from the
+                            Schedule screen like they would from the main screen. It is a minor issue but
+                            should be fixed.
+                        </li>
+                        <li>
+                            Allowing users to view course information from the schedule screen when the
+                            course is clicked on.
+                        </li>
+                    </ul>
+                </li><br>
+
+                <li>
+                    [H-3 User Control] [Severity 3]
+                    <ul>
+                        <li>
+                            <mark>There is only one way to return to the main screen that displays the schedule and
+                            allows users to view the course information if they click on one of the courses and
+                            it is not obvious that it does this.</mark>
+                        </li>
+                        <li>
+                            This issue should be given high priority because the main screen is currently the
+                            only screen that allows the user to view course information.
+                        </li>
+                        <li>
+                            Placing a button on the top bar near the Logout button labelled Main or Home
+                            will allow the user to navigate back.
+                        </li>
+                    </ul>
+                </li><br>
+
+                <li>
+                    [H-4 Consistency] [Severity 3]
+                    <ul>
+                        <li>
+                            <mark>There is no way to drop a course when the user is in the courses screen but the
+                            user can add courses from this screen.</mark>
+                        </li>
+                        <li>
+                            Currently there is only one screen that the user can drop classes from and once
+                            they navigate away from that screen it is very difficult to return to it, which makes
+                            this issue high priority.
+                        </li>
+                        <li>
+                            Being able to drop courses from the courses screen would solve this.
+                        </li>
+                    </ul>
+                </li><br>
+
+                <li>
+                    [H-1 Visibility of System Status] [Severity 1]
+                    <ul>
+                        <li>
+                            <mark>The current waitlist size is not indicated on the page</mark>
+                        </li>
+                        <li>
+                            This issue is cosmetic and only slightly inconvenient to the user
+                        </li>
+                        <li>
+                            Displaying the amount of people on the waitlist would solve this issue.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h2>4 Summary</h2>
+
+            <p>Overall, the design of the application is very aesthetically pleasing, and the displaying of the
+            other users courses as coloured overlaps was a very nice touch. Searching for courses is a simple
+            process and by comparing the current schedule with potential classes to see if there are any
+            conflicts makes selecting classes much simpler.</p>
+
+            <p>However, small flaws in the navigation as well as inconsistency in the application will make it
+            very hard for users who do not have experience with this application. Navigating back to the
+            main screen is almost impossibly unless the user knows that they must select the unlabelled
+            button in the top right corner, and then select the Google Calendar button, then click cancel, and
+            then click on the background screen. Because certain tasks, such as viewing course information
+            and dropping a course, are only available on the main screen, it makes the issue of navigation
+            much worse.</p>
+
+            <p>Being able to delete contacts so that they are not able to view your schedule is important as well.
+            It will prevent users from essentially being able to stalk other users if they are so inclined.</p>
+
+            <br><br><br><br><p><a href="../index.html">&laquo; Back</a></p>
+
+        </div>
+
+        <div class="blank"></div>
+
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-73726729-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+
+    </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
