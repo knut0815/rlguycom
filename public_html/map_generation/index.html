@@ -1,0 +1,411 @@
+<!doctype html>
+
+<html>
+    <head>
+        <title>Fantasy Map Generator | Ryan Guy's Portfolio</title>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300'>
+        <link rel='stylesheet' href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700&subset=latin,greek-ext">
+        <link rel="stylesheet" href="../css/basic.css">
+        <link rel='stylesheet' href='../css/prism.css'>
+
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script>
+
+        <style>
+            img {
+                width: 800px;
+                border: #CCCCCC 1px solid;
+            }
+
+        </style>
+    </head>
+
+    <body>
+
+        <div class="header">
+            <div class="header_name">
+                <a class="header_name" href="../index.html">RLGUY</a>
+            </div>
+
+            <div class="header_links">
+                <ul>
+                    <li class="header_link"><a class="header_link" href="../index.html">Home</a> </li>
+                    <li class="header_link"><a class="header_link" href="../portfolio/index.html">Portfolio</a></li> 
+                    <li class="header_link"><a class="header_link" href="../projects/index.html">Projects</a></li> 
+                    <!--<li class="header_link"><a class="header_link" href="../resume/index.html">Resume</a> </li>-->
+                    <li class="header_link"><a class="header_link" href="mailto:ryan.l.guy@gmail.com">Contact</a></li>
+                </ul>
+            </div>
+            <hr>
+
+            <div class="icon_links">
+                <ul>
+                    <li><a class="icon_github" href="https://github.com/rlguy" target="_blank"></a></li>
+                    <li><a class="icon_youtube" href="https://www.youtube.com/c/rlguyportfolio" target="_blank"></a></li>
+                </ul>
+            </div>
+        </div>
+        <br><br>
+
+        <h1 align="center">Fantasy Map Generator</h1>
+
+        <p align="center">Ryan L. Guy<br>
+        2016</p>
+
+        <div class="center_column">
+
+            <h2>Introduction</h2>
+
+            <p>This program is an implementation of a procedural map generator based upon methods described in Martin 
+            O'Leary's <a href="https://mewo2.com/notes/terrain/">"Generating fantasy map"</a> notes. Features include 
+            irregular Voronoi grid generation, simulated erosion model, city and border generation, and simulated 
+            annealing automated label placement. Written in C++ and drawn using the Cairo graphics library.</p>
+
+            <p>This project uses <a href="https://github.com/danielaparker/jsoncons">jsoncons</a> for parsing JSON data, 
+            <a href="http://www.argtable.org/">Argtable3</a> for parsing command line arguments, 
+            <a href="https://www.python.org/">Python</a> and <a href="https://cairographics.org/pycairo/">PyCairo</a>
+            for drawing, and data from <a href="http://www.geonames.org/">GeoNames</a> for city name data.</p>
+
+            <p>The source code is hosted on GitHub: 
+            <a href="https://github.com/rlguy/FantasyMapGenerator">http://github.com/rlguy/FantasyMapGenerator</a></p>
+
+            <h3>Gallery</h3>
+
+            <p>The following images show a variety of maps generated with this program.</p>
+
+            <a href="http://rlguy.com/map_generation/images/example_large.jpg">
+                <img src="http://rlguy.com/map_generation/images/example_small.jpg">
+            </a>
+            <a href="http://rlguy.com/map_generation/images/gallery00_large.jpg">
+                <img src="http://rlguy.com/map_generation/images/gallery00_small.jpg">
+            </a>
+            <a href="http://rlguy.com/map_generation/images/gallery03_large.jpg">
+                <img src="http://rlguy.com/map_generation/images/gallery03_small.jpg">
+            </a>
+            <a href="http://rlguy.com/map_generation/images/gallery01_large.jpg">
+                <img src="http://rlguy.com/map_generation/images/gallery01_small.jpg">
+            </a>
+            <a href="http://rlguy.com/map_generation/images/gallery02_large.jpg">
+                <img src="http://rlguy.com/map_generation/images/gallery02_small.jpg">
+            </a>
+            <a href="http://rlguy.com/map_generation/images/gallery05_large.jpg">
+                <img src="http://rlguy.com/map_generation/images/gallery05_small.jpg">
+            </a>
+            <a href="http://rlguy.com/map_generation/images/gallery04_large.jpg">
+                <img src="http://rlguy.com/map_generation/images/gallery04_small.jpg">
+            </a>
+
+            <h3>Dependencies</h3>
+
+            <p>There are three dependencies that are required to build this program:</p>
+
+            <ol>
+                <li>Python 2.7+ (<a href="https://www.python.org/">http://www.python.org/</a>)</li>
+                <li>PyCairo graphics library 
+                    (<a href="https://cairographics.org/pycairo/">http://cairographics.org/pycairo/</a>)
+                </li>
+                <li>A compiler that supports C++11</li>
+            </ol>
+
+            <h4>Installing PyCairo on Windows</h4>
+
+            <p>Prebuilt Windows binaries for PyCairo and its dependencies can be obtained by following 
+            <a href="http://www.cs.rhul.ac.uk/home/tamas/development/igraph/tutorial/install.html">
+                this guide on installing igraph</a>, which uses PyCairo for drawing. The relevant section is titled 
+            <i>"Graph plotting in igraph on Windows"</i>.</p>
+
+            <p>To check if PyCairo was installed correctly, try importing the module within the Python interpretor:</p>
+
+<pre><code class="language-python">import cairo
+</code></pre>
+
+            <h3>Installation</h3>
+
+            <p>This program uses the <a href="http://cmake.org/">CMake</a> utility to 
+            generate the appropriate solution, project, or Makefiles for your system. 
+            The following commands can be executed in the root directory of the project 
+            to generate a build system for your machine:</p>
+
+<pre><code class="language-makefile">mkdir build && cd build
+cmake ..
+</code></pre>
+
+            <p>Once successfully built, the program will be located in the 
+            <code class="inline black">build/</code> directory.
+
+            <h3>Running the Map Generator</h3>
+
+            <p>The map generator is a command line tool and can be invoked with the command:</p>
+
+<pre><code class="language-makefile">./map_generator [OPTIONS]
+</code></pre>
+
+            <p>A set of options can be displayed with the <code class="inline black">--help</code> flag:</p>
+
+<pre><code class="language-makefile">&gt;&gt;&gt; ./map_generator --help
+
+Usage: map_generation [-hv] [-s &lt;uint&gt;] [--timeseed] [-r &lt;float&gt;] [-o filename] 
+[&lt;file&gt;] [-e &lt;float&gt;] [--erosion-steps=&lt;int&gt;] [-c &lt;int&gt;] [-t &lt;int&gt;] 
+[--size=&lt;widthpx:heightpx&gt;] [--draw-scale=&lt;float&gt;] [--no-slopes] [--no-rivers] 
+[--no-contour] [--no-borders] [--no-cities] [--no-towns] [--no-labels] 
+[--no-arealabels] [--drawing-supported]
+
+Options:
+
+  -h, --help                     display this help and exit
+  -s, --seed=&lt;uint&gt;              set random generator seed
+  --timeseed                     set seed from system time
+  -r, --resolution=&lt;float&gt;       level of map detail
+  -o, --output=filename          output file
+  &lt;file&gt;                         output file
+  -e, --erosion-amount=&lt;float&gt;   erosion amount
+  --erosion-steps=&lt;int&gt;          number of erosion iterations
+  -c, --cities=&lt;int&gt;             number of generated cities
+  -t, --towns=&lt;int&gt;              number of generated towns
+  --size=&lt;widthpx:heightpx&gt;      set output image size
+  --draw-scale=&lt;float&gt;           set scale of drawn lines/points
+  --no-slopes                    disable slope drawing
+  --no-rivers                    disable river drawing
+  --no-contour                   disable contour drawing
+  --no-borders                   disable border drawing
+  --no-cities                    disable city drawing
+  --no-towns                     disable town drawing
+  --no-labels                    disable label drawing
+  --no-arealabels                disable area label drawing
+  --drawing-supported            display whether drawing is supported and exit
+  -v, --verbose                  output additional information to stdout
+
+</code></pre>
+
+            <p>Example:</p>
+
+<pre><code class="language-makefile">./map_generation.exe -v --timeseed -r 0.08 -o fantasy_map.png
+</code></pre>
+
+            <p>Leaving the options blank will generate a high quality map with resolution 
+            <code class="inline black">1920x1080</code>to the file <code class="inline black">output.png</code>.</p>
+            
+            <h2>Map Generation Process</h2>
+
+            <p>The map generation process involves the generation of irregular grids, the generation of terrain, the 
+            generation of city and towns locations, and their borders, and the generation a label placements.</p>
+
+            <h3>Generating Irregular Grids</h3>
+
+            <p>A Poisson disc sampler generates a set of random points with the property that no two points are within a 
+            set radius of eachother.</p>
+
+            <img src="http://rlguy.com/map_generation/images/uniform_vs_poisson_sampling.jpg">
+
+            <p>The set of points are triangulated in a Delaunay triangulation. The triangulation is stored in a doubly 
+            connected edge list (DCEL) data structure.</p>
+
+            <img src="http://rlguy.com/map_generation/images/uniform_vs_poisson_delaunay.jpg">
+
+            <p>The dual of the Delaunay triangulation is computed to produce a Voronoi diagram, which is also stored as 
+            a DCEL.</p>
+
+            <img src="http://rlguy.com/map_generation/images/uniform_vs_poisson_voronoi.jpg">
+
+            <p>Each vertex in the Delaunay triangulation becomes a face in the Voronoi diagram, and each triangle in the 
+            Delaunay triangulation becomes a vertex in the Voronoi diagram. A triangle is transformed into a vertex by 
+            fitting a circle to the three triangle vertices and setting the circle's center as the position of a Voronoi 
+            vertex. The following image displays the relationship between a Delaunay triangulation and a Voronoi 
+            diagram.</p>
+
+            <img src="http://rlguy.com/map_generation/images/voronoi_delaunay_overlay.jpg">
+
+            <p>The vertices in the Voronoi diagram will be used as the nodes in an irregular grid. Note that each node 
+            has exactly three neighbours.</p>
+
+            <h3>Generating Terrain</h3>
+
+            <p>An initial height map is generated using a set of primitives:</p>
+
+            <ul>
+                <li><b>addHill</b> - Create a rounded hill where height falls off smoothly</li>
+                <li><b>addCone</b> - Create a cone where height falls off linearly</li>
+                <li><b>addSlope</b> - Create a slope gradient that runs parallel to a line</li>
+            </ul>
+
+            <p>and a set of operations:</p>
+
+            <ul>
+                <li><b>normalize</b> - Normalize the height map values to [0,1]</li>
+                <li><b>round</b> - Round height map features by normalizing and taking the square root of the height values</li>
+                <li><b>relax</b> - Replace height values with the average of their neighbours</li>
+                <li><b>setSeaLevel</b> - Translate the height map so that the new sea level is at zero</li>
+            </ul>
+
+            <img src="http://rlguy.com/map_generation/images/heightmap_primitives.jpg">
+
+            <p>Contour lines are generated from the Voronoi edges. If a contour line is generated for some elevation 
+            \(h\), a Voronoi edge will be included in the countour if one of its adjacent faces has a height 
+            less than \(h\) while the other has a height greater than or equal to \(h\).</p>
+
+            <img src="http://rlguy.com/map_generation/images/heightmap_contour.jpg">
+
+            <p>A flow map is generated by tracing the route that water would flow over the map. At each point on the 
+            grid, a path must be traced downhill to the edge of the map. This means that there can be no sinks or 
+            depressions within the height map. Depressions are filled by using the 
+            <a href="http://horizon.documentation.ird.fr/exl-doc/pleins_textes/pleins_textes_7/sous_copyright/010031925.pdf">
+                Planchon-Darboux Algorithm
+            </a> to ensure that a path to the edge of the map exists for all grid points.</p>
+
+            <img src="http://rlguy.com/map_generation/images/flowmap.jpg">
+
+            <p>The height map is then eroded by using the flow map data and terrain slope data.</p>
+
+            <img src="http://rlguy.com/map_generation/images/erosion_process.jpg">
+
+            <p>Paths representing rivers are generated at points where the amount of flux (river current) is above some 
+            threshold. The path of the river follows the flow map until it reaches a coastline or the edge of the map.
+            </p>
+
+            <img src="http://rlguy.com/map_generation/images/river_generation.jpg">
+
+            <p>The height map is shaded based upon the horizontal component of the slope. Short strokes are drawn at 
+            faces where the slope is above some threshold. Strokes pointing upwards from left to right are drawn if the 
+            height map is sloping upward from left to right, and strokes pointing downward from left to right are drawn 
+            if the height map is sloping downward from left to right.</p>
+
+            <img src="http://rlguy.com/map_generation/images/slope_shading.jpg">
+
+            <h3>Generating Cities and Borders</h3>
+
+            <p>City score values are computed before the placement of a city and have a bonus at locations where there 
+            is a high flux value and a penalty at locations that are too close to other cities or too close to the edge 
+            of the map.</p>
+
+            <img src="http://rlguy.com/map_generation/images/city_scores.jpg">
+
+            <p>Cities are placed at locations where the city score value is at a maximum.</p>
+
+            <img src="http://rlguy.com/map_generation/images/city_locations.jpg">
+
+            <p>For each city, the movement cost is calculated for each tile (Voronoi face). Movement costs are based on 
+            horizontal and vertical distance, amount of flux (crossing rivers), and transitioning from land to sea 
+            (or sea to land).</p>
+
+            <img src="http://rlguy.com/map_generation/images/movement_costs.jpg">
+
+            <p>The tiles are then divided amongst the cities depending on who has the lowest movement cost for the 
+            tile.</p>
+
+            <img src="http://rlguy.com/map_generation/images/territories_unclean.jpg">
+
+            <p>This method tends to create jagged borders and disjointed territories. The territories are cleaned up by 
+            smoothing the edges and by instating a rule that a city territory must contain the city and be a contiguous 
+            region.</p>
+
+            <img src="http://rlguy.com/map_generation/images/territories_clean.jpg">
+
+            <p>Borders are then generated around the city territories.</p>
+
+            <img src="http://rlguy.com/map_generation/images/territory_borders.jpg">
+
+            <p>Towns can be added to the map by using the same process that is used to generate city locations. Towns 
+            are contained within the city territories and are not involved in territory/border generation.</p>
+
+            <h3>Generating Label Positions</h3>
+
+            <p>The simulated annealing automated label placement system is based on methods described in the 
+            <a href="http://www.merl.com/publications/docs/TR96-04.pdf">General Cartographic Labeling Algorithm</a>
+            paper.</p> 
+
+            <p>There are two types of labels that will need to be generated: marker labels that label city and town 
+            markers, and area labels that label the city territories.</p>
+
+            <p>The labeling process begins by generating candidate label positions for the marker and area labels and 
+            calculating a base score for each label.</p>
+
+            <p>Marker label candidates are generated around a city or town marker. The calculated scores depend on 
+            orientation about the marker, how many river, border, and contour lines the label overlaps, whether the 
+            label overlaps another marker, and whether the marker is contained within the map.</p>
+
+            <img src="http://rlguy.com/map_generation/images/marker_label_candidates.jpg">
+
+            <p>Area label candidates are generated within territory boundaries. The calculated scores are similar to the 
+            marker label scores except that the orientation score is based upon how much of the label is contained 
+            within the territory that it names and how close the center of the label is to the centroid of the 
+            territory.</p>
+
+            <img src="http://rlguy.com/map_generation/images/area_label_candidates.jpg">
+
+            <p>The number of area label candidates is then narrowed down by selecting only the candidates with the best 
+            scores.</p>
+
+            <img src="http://rlguy.com/map_generation/images/area_label_candidates_refined.jpg">
+
+            <p>After all candidates for the marker and area labels have been generated, the final label candidates are 
+            selected by running the following simulated annealing algorithm:</p>
+
+<pre><code class="language-makefile">1. Initialize the label configuration by selecting a candidate randomly for each label. 
+2. Initialize the "temperature" T to an initial high value.
+3. Repeat until the rate of improvement falls below some threshold:
+    a) Decrease T according to an annealing schedule.
+    b) Chose a label randomly and randomly select a new candidate.
+    c) Compute ΔE, the change in label configuration score caused by 
+       selecting a new label candidate.
+    d) If the new labeling is worse, undo the candidate change with 
+       a probability P = 1.0 - exp(ΔE/T).
+</code></pre>
+
+            <p>The score of a label configuration is calculated by averaging the base scores of the selected candidates 
+            and adding an additional penalty for each set of overlapping candidates.</p>
+
+            <p>The initial high value of the temperature \(T\) is set to \(1 / \log(3)\). This value is chosen so that 
+            \(P\) evaluates to \(2/3\) when \(\Delta E\) is \(1\).</p>
+
+            <p>The loop in step three is terminated when no successful label repositionings are made after \(20 n\) 
+            consecutive attempts, where \(n\) is the number of labels, or after some maximum number of temperature 
+            changes.</p>
+
+            <p>The temperature decreases by \(10\%\) after \(20 n\) label repositioning attemps are made, or if 
+            \(5 n\) successful repositioning attemps are made at the same temperature value.</p>
+
+            <p>The following set of images show the initial labeling, the labeling halfway through the algorithm, and 
+            the final labeling:</p>
+
+            <img src="http://rlguy.com/map_generation/images/label_placements0.jpg">
+            <img src="http://rlguy.com/map_generation/images/label_placements1.jpg">
+            <img src="http://rlguy.com/map_generation/images/label_placements2.jpg">
+
+            <h2>References</h2>
+
+            <p>M. O'Leary, <i>"Generating fantasy maps"</i>, <a href="http://Mewo2.com">Mewo2.com</a>, 2016. [Online]. Available: 
+            <a href="https://mewo2.com/notes/terrain/">https://mewo2.com/notes/terrain/</a>. [Accessed: 18- Oct- 2016].</p>
+
+            <p>R. Bridson, <i>Fast Poisson Disk Sampling in Arbitrary Dimensions</i>, ACM SIGGRAPH 2007 Sketches Program, 
+            2007.</p>
+
+            <p>M. Berg, <i>Computational geometry</i>. Berlin: Springer, 2000.</p>
+
+            <p>O. Planchon and F. Darboux, </i>"A fast, simple and versatile algorithm to fill the depressions</i> of digital 
+            elevation models", CATENA, vol. 46, no. 2-3, pp. 159-176, 2002.</p>
+
+            <p>S. Edmondson, J. Christensen, J. Marks, and S. Shieber, <i>"A General Cartographic Labeling Algorithm"</i>, 
+            Mitsubishi Electric Research Laboratories, 1996.</p>
+
+            <p>J. Christensen, J. Marks and S. Shieber, <i>"An empirical study of algorithms for point-feature label 
+            placement"</i>, TOG, vol. 14, no. 3, pp. 203-232, 1995.</p>
+
+        </div>
+
+        <div class="blank"></div>
+
+        <script src="../javascript/prism.js"></script>
+
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-73726729-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+
+    </body>
+</html>
