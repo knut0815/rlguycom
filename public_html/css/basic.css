@@ -39,6 +39,7 @@ h4  {
     font-weight: bold;
     font-size: 19px;
     text-transform: uppercase;
+    letter-spacing:1px;
 }
 
 h5  {
@@ -255,13 +256,15 @@ td.borders, th.borders {
 .gallery-left img {
     max-width: 100%;
     height: auto;
-    padding-right:8px;
+    padding-right:4px;
+    padding-left:4px;
 }
 
 .gallery-right img {
     max-width: 100%;
     height: auto;
-    padding-left:8px;
+    padding-left:4px;
+    padding-left:4px
 }
 
 .gallery p {
